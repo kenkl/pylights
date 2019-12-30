@@ -59,6 +59,8 @@ def ison(i):
 def getstate(i):
     lights=getlights()
     unitid=lights[str(i)]
+    man=unitid['manufacturername']
+    prod=unitid['productname']
     state=unitid['state']
     name=unitid['name']
     ison=state['on']
@@ -91,6 +93,8 @@ def getstate(i):
     print("Saturation:", sat)
     print("Colour Temp:", ct)
     print("Colour Mode:", cm)
+    print("Manufacturer Name:", man)
+    print("Product Name:", prod)
 
 def lightlist():
     lights=getlights()
