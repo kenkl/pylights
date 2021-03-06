@@ -4,12 +4,12 @@
 from lightkit import *
 
 # How many minutes should the "sunrise" take? 
-minutes = 7
+minutes = 12
 sleepInterval = (minutes * 60) / 254
 
 # see lightlist.py for unit number(s)
 #units = [21, 38]
-units = [16]
+units = [16, 30, 31, 32, 33]
 
 def doThing(lights, brightness):
     for light in lights:
@@ -18,7 +18,8 @@ def doThing(lights, brightness):
 # First, turn the lights on, set the colour-temperature, and initial brightness...
 for light in units:
     oneon(light)
-    sethue(light, 7676, 143)  # "standard" warm-white colour-temperature
+    #setct(light, 400)  # "standard" warm-white colour-temperature
+    setct(light, 330)  # "standard" cool-white colour-temperature
     setlevel(light, 0)
 
 # ...and then bring them up.
