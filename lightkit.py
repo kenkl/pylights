@@ -15,6 +15,8 @@ ctx.verify_mode = ssl.CERT_NONE
 hostname='huehub.kenkl.org'
 apikey='RPVo8wEXziF6OeLtCaCUqMdqWm28DrKqVQL7ftgG'
 baseurl="https://"+hostname+"/api/"+apikey
+CTWARM = 400
+CTCOOL = 330
 
 def lighturl(i):
     url=baseurl+"/lights/"+str(i)
