@@ -8,4 +8,6 @@
 
 - Update fakesun.py to include the bedroom downlights, _and_ get everyone using a cooler colour-temperature via setct(). It's a WIP, but I think the brighter, cooler light will more closely simulate a sunrise and wake me up a little better. As mentioned the other day - "adjust to taste" - here we are.
 
+2021-03-08:
 
+- Made holights.py - a "control panel" thing for my home-office/studio lights, as a proof-of-concept, with Tkinter. It largely echoes what [Lights](https://github.com/kenkl/lights) does for the room lights. I did leave the minimal scenes out, as I rarely use them. Along the way, added CTWARM and CTCOOL globals to lightkit.py; I'm already having ideas how they'll be useful for some other things.
