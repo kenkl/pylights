@@ -34,10 +34,13 @@ def hoalloff():
 
 def howltog():
     howl = 37
+    toggle(howl)
+    """
     if ison(howl):
         oneoff(howl)
     else:
         oneon(howl)
+    """
 
 def hohalf(bri=128):
     units = [3, 19, 21, 38]
@@ -75,8 +78,32 @@ def homin1():
 # Living Room (LR) scenes
 
 # Kitchen (K) scenes
+def kcstog():
+    '''Kitchen Coffee Shop scene'''
+    units = [4, 6, 7, 8, 27, 34]
+    if not checkstate(8): # keyed off the downlight at the far end; if it's in-progress, they all are
+        # no statefile found. first, save states
+        for light in units:
+            savestate(light)
+        # ...and then set the scene
+        for light in units:
+            oneon(light)
+        sethue(4, 7676, 199)
+        setlevel(4, 38)
+        for dl in [6, 7, 8]:
+            setct(dl, 400)
+        setlevel(6, 127)
+        setlevel(7, 254)
+        setlevel(8, 127)
+        setlevel(34, 38)
+    else:
+        # statefile found, let's restore the previous state
+        for light in units:
+            restorestate(light)
+       
 
 # Global (GL) scenes
+# allalloff() already exists in lightkit, FYI
 
 # Other (O) (test) scenes
 

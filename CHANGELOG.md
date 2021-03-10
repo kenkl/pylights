@@ -16,3 +16,10 @@
 
 - holights got me thinking - if I could plug a frontend in for lightkit so easily, it'd be handy to capture scenes and macros in one place, so that I could use whatever client, so long as it can import the module, to drive the lighting. Ultimately, Django/Flask/whatever could use that to create a unified web frontend. So, I've created scenes.py to do just that, and refactored holights.py to use it. 
 
+2021-03-10:
+
+- Add Docstrings to the functions in lightkit for self-documentation.
+- Additional functions added to lightkit (toggle, statefilename, sp2_on, etc.).
+- Refactor scenes a little to take advantage of new things in lightkit.
+- Added kcstog() to scenes, and discovered A Thing. I _think_ I'm putting the bulbs in an error state for a moment (they'll flash when restorestate() runs) before settling in to what I'm pushing to them. I think I know what I need to do... to be continued...
+
