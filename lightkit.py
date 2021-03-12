@@ -135,11 +135,16 @@ def lightlist():
         state = unitid['state']
         name = unitid['name']
         ison = state['on']
+        reachable = state['reachable']
         if(ison == True):
             onoff="ON"
         else:
             onoff="OFF"
-        print(i,name,"  "+onoff)
+        if reachable:
+            rs = ""
+        else:
+            rs = "*** UNREACHABLE ***"
+        print(i,name,"  "+onoff+"  "+rs)
 
 def allalloff():
     '''Turns off ALL the lights known to the Bridge'''

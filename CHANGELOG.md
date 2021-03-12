@@ -23,3 +23,7 @@
 - Refactor scenes a little to take advantage of new things in lightkit.
 - Added kcstog() to scenes, and discovered A Thing. I _think_ I'm putting the bulbs in an error state for a moment (they'll flash when restorestate() runs) before settling in to what I'm pushing to them. I think I know what I need to do... to be continued...
 
+2021-03-11:
+
+- After some research, I think the flash I mentioned yesterday (with colour, depending on the bulb) is happening because I'm shoving _all_ the state keys, even the read-only ones. There's a precedence with XY, CT, and HS colour modes as well; I'm probably violating that by shoving all of them like this. I've a clever plan to clean all that up _before_ writing the statefile, but that's gonna take a little more time than I have just this minute. Just wanted to make a note of it. To be continued... (again)
+- Added an indicator to lightlist() when a unit is unreachable for some reason, as an FYI. Having the idea that I could have a periodic poll somewhere that would send an alert/notification/whatever if the poll catches units that have gone 'missing'. 
