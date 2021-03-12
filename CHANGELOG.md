@@ -27,3 +27,16 @@
 
 - After some research, I think the flash I mentioned yesterday (with colour, depending on the bulb) is happening because I'm shoving _all_ the state keys, even the read-only ones. There's a precedence with XY, CT, and HS colour modes as well; I'm probably violating that by shoving all of them like this. I've a clever plan to clean all that up _before_ writing the statefile, but that's gonna take a little more time than I have just this minute. Just wanted to make a note of it. To be continued... (again)
 - Added an indicator to lightlist() when a unit is unreachable for some reason, as an FYI. Having the idea that I could have a periodic poll somewhere that would send an alert/notification/whatever if the poll catches units that have gone 'missing'. 
+
+2021-03-12:
+
+The theme today is getting stateful toggling supported with a number of functions -
+
+- Enhanced savestate() to only save the colour-mode currently in use for later restore. This fixed the flashing noted earlier.
+- restorestate() can now be flagged to keep the statefile
+- Add clearstate() to drop a previous statefile
+- Add clearallstates() to iterate through the lights and clear all the dangling statefiles for them
+- Add optional flag to restorestate() to allow preservation of the statefile
+- Add saveallstates() and restoreallstates() for some reason (I don't know when this'll be useful, but...)
+
+- Add 'Hue Accents' group scene on/off

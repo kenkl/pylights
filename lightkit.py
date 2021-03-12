@@ -18,6 +18,10 @@ apikey='RPVo8wEXziF6OeLtCaCUqMdqWm28DrKqVQL7ftgG' # See (TODO: add reference) to
 baseurl="https://"+hostname+"/api/"+apikey
 CTWARM = 400
 CTCOOL = 330
+HRED = 0
+HGREEN = 25500
+HBLUE = 46920
+
 
 def lighturl(i):
     '''From the provided ID, construct the URL to POST to for it'''
@@ -35,12 +39,38 @@ def getstate(i):
     state = unitid['state']
     return state
 
+def sanitizestate(state):
+    '''Remove extra keys from state in preparation for replay/restore'''
+    g = state.pop("effect", None)
+    g = state.pop("alert", None)
+    g = state.pop("mode", None)
+    g = state.pop("reachable", None)
+    return state
+
 def savestate(i):
     '''Save current unit status to a file'''
-    with open(statefilename(i), 'w') as statefile:
-       statefile.write(json.dumps(getstate(i)))
+    # Get the state, sanitize it, and strip unused colour-modes
+    state = sanitizestate((getstate(i)))
+    if 'colormode' in state:
+        # let's preserve only the colour-state used for the current light condition
+        if state['colormode'] == 'xy':
+            g = state.pop("hue", None)
+            g = state.pop("sat", None)
+            g = state.pop("ct", None)
+        if state['colormode'] == 'ct':
+            g = state.pop("hue", None)
+            g = state.pop("sat", None)
+            g = state.pop("xy", None)
+        if state['colormode'] == 'hs':
+            g = state.pop("ct", None)
+            g = state.pop("xy", None)
+        g = state.pop('colormode', None)
 
-def restorestate(i):
+    # Then, write it to a statefile for later restoration
+    with open(statefilename(i), 'w') as statefile:
+       statefile.write(json.dumps(state))
+
+def restorestate(i, rmstatefile=True):
     '''Restore unit status from statefile'''
     sf = statefilename(i)
     if os.path.exists(sf):
@@ -49,7 +79,8 @@ def restorestate(i):
         url = lighturl(i) + "/state"
         wr = urllib.request.Request(url, state, method='PUT')
         urllib.request.urlopen(wr, context=ctx)
-        os.remove(sf)
+        if rmstatefile:
+            os.remove(sf)
 
 def checkstate(i):
     '''Check whether the unit has a statefile (in progress)'''
@@ -57,6 +88,34 @@ def checkstate(i):
         return True
     else:
         return False
+
+def clearstate(i):
+    '''drop the statefile for an individual light'''
+    if checkstate(i):
+        os.remove(statefilename(i))
+
+def getstates():
+    '''returns a list of lights that have a statefile (in progress)'''
+    lightlist = []
+    for light in getlights():
+        if checkstate(light):
+            lightlist.append(light)
+    return lightlist
+
+def clearallstates():
+    '''drop statefiles for all lights'''
+    for light in getstates():
+        clearstate(light)
+
+def saveallstates():
+    '''save a statefile for every light'''
+    for light in getlights():
+        savestate(light)
+
+def restoreallstates(dropstatefile=True):
+    '''restore the state for every in-progress light'''
+    for light in getstates():
+        restorestate(light, dropstatefile)
 
 def oneon(i):
     '''Simply turn on a single unit'''
@@ -95,6 +154,7 @@ def gethrstate(i):
     state=unitid['state']
     name=unitid['name']
     ison=state['on']
+    reachable=state['reachable']
     try:     # Not all lights have the same capabilities (HS vs. CT only vs. ON/OFF only). Play nice.
         bri=state['bri']
     except KeyError:
@@ -126,6 +186,7 @@ def gethrstate(i):
     print("Colour Mode:", cm)
     print("Manufacturer Name:", man)
     print("Product Name:", prod)
+    print("Reachable:", reachable)
 
 def lightlist():
     '''Displays a list of all Lights units and each of their on: states'''

@@ -104,6 +104,22 @@ def kcstog():
 
 # Global (GL) scenes
 # allalloff() already exists in lightkit, FYI
+def hueaccenton():
+    '''Turn on the accent lights in the LR and Kitchen'''
+    units = [4, 26, 27, 34]
+    for light in units:
+        oneon(light)
+    sethue(4, 7676, 199)
+    setlevel(4, 38)
+    setlevel(34, 38)
+
+def hueaccentoff():
+    '''Turn off the accent lights in the LR and Kitchen'''
+    units = [4, 26, 27, 34]
+    for light in units:
+        oneoff(light)
+
+    
 
 # Other (O) (test) scenes
 
