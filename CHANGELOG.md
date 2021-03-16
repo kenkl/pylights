@@ -40,3 +40,10 @@ The theme today is getting stateful toggling supported with a number of function
 - Add saveallstates() and restoreallstates() for some reason (I don't know when this'll be useful, but...)
 
 - Add 'Hue Accents' group scene on/off
+
+2021-03-16:
+
+- Added/refined functions in lightkit.py and scenes.py to support goodmorning.py
+- Add goodmorning.py - to bring all the lights up to full brightness, as a way to 'kick-start' the morning wake-up routine. 
+
+

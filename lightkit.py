@@ -131,6 +131,24 @@ def oneoff(i):
     wr=urllib.request.Request(url, data=dothis, method='PUT')
     urllib.request.urlopen(wr, context=ctx)
 
+def on(units, state=True):
+    '''Turn on (or off) a set of lights'''
+    if isinstance(units, list):
+        for light in units:
+            if state:
+                oneon(light)
+            else:
+                oneoff(light)
+    elif isinstance(units, int):
+        if state:
+            oneon(units)
+        else:
+            oneoff(units)
+    else:
+        print("Fail. on() needs either an int with a single unit, or a list with multiple units. You provided:")
+        print(type(units))
+
+
 def getlights():
     '''Gets the complete state of the Bridge and returns the Lights node'''
     wr=urllib.request.urlopen(baseurl, context=ctx)
@@ -213,7 +231,7 @@ def allalloff():
     for i in lights.keys():
         oneoff(i)
 
-def sethue(i, h, s=254):
+def sethue(i, h=7676, s=143):
     '''Set hue/saturation values for a single unit'''
     url=lighturl(i)+"/state"
     dothis='{"hue": '+str(h)+', "sat": '+str(s)+'}'
@@ -228,6 +246,21 @@ def setct(i, ct):
     dothis=dothis.encode('utf-8')
     wr=urllib.request.Request(url, data=dothis, method='PUT')
     urllib.request.urlopen(wr, context=ctx)
+
+def setcts(units, ct):
+    '''set colour-temperature value for a set of lights'''
+    for light in units:
+        setct(light, ct)
+
+def sethues(units, hue=7676, sat=143):
+    '''Set hue/saturation values for a set of lights'''
+    for light in units:
+        sethue(light, hue, sat)
+
+def setlevels(units, bri=254):
+    '''Set brightness level value for a set of lights'''
+    for light in units:
+        setlevel(light, bri)
 
 def setlevel(i, b=254):
     '''Set brightness level value for a single unit'''

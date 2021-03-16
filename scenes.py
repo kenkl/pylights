@@ -77,6 +77,7 @@ def homin1():
 
 # Living Room (LR) scenes
 
+
 # Kitchen (K) scenes
 def kcstog():
     '''Kitchen Coffee Shop scene'''
@@ -86,8 +87,11 @@ def kcstog():
         for light in units:
             savestate(light)
         # ...and then set the scene
+        on(units)
+        """
         for light in units:
             oneon(light)
+            """
         sethue(4, 7676, 199)
         setlevel(4, 38)
         for dl in [6, 7, 8]:
@@ -104,20 +108,57 @@ def kcstog():
 
 # Global (GL) scenes
 # allalloff() already exists in lightkit, FYI
-def hueaccenton():
-    '''Turn on the accent lights in the LR and Kitchen'''
+def hueaccent(on=True):
+    '''Turn on/off the accent lights in the LR and Kitchen'''
     units = [4, 26, 27, 34]
-    for light in units:
-        oneon(light)
-    sethue(4, 7676, 199)
-    setlevel(4, 38)
-    setlevel(34, 38)
+    if on:
+        for light in units:
+            oneon(light)
+        sethue(4, 7676, 199)
+        setlevel(4, 38)
+        setlevel(34, 38)
+    else:
+        for light in units:
+            oneoff(light)
 
-def hueaccentoff():
-    '''Turn off the accent lights in the LR and Kitchen'''
-    units = [4, 26, 27, 34]
-    for light in units:
-        oneoff(light)
+def dl(units, onstate=True, bri=254, ct=CTCOOL):
+    '''Generic downlight(s) on/off, brightness, CT'''
+    if isinstance(units, list):
+        on(units, onstate)
+        setlevels(units, bri)
+        setcts(units, ct)
+    elif isinstance(units, int):
+        on(units, onstate)
+        setlevel(units, bri)
+        setct(units, ct)
+
+def kdl(onstate=True, bri=254, ct=CTCOOL):
+    '''Kitchen downlights on/off, brightness, CT'''
+    units = [6, 7, 8]
+    dl(units, onstate, bri, ct)
+
+def lrdl(onstate=True, bri=254, ct=CTCOOL):
+    '''Living room downlights on/off, brightness, CT'''
+    units = [22, 23, 24, 25]
+    dl(units, onstate, bri, ct)
+
+def brdl(onstate=True, bri=254, ct=CTCOOL):
+    '''Living room downlights on/off, brightness, CT'''
+    units = [30, 31, 32, 33]
+    dl(units, onstate, bri, ct)
+
+
+
+def rnl(on=True):
+    '''Random Night Light on/off'''
+    rnl = 10
+    if on:
+        oneon(rnl)
+        setlevel(rnl, 1)
+        sethue(rnl, 0, 254)
+    else:
+        oneoff(rnl)
+
 
     
 
