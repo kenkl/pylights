@@ -46,4 +46,9 @@ The theme today is getting stateful toggling supported with a number of function
 - Added/refined functions in lightkit.py and scenes.py to support goodmorning.py
 - Add goodmorning.py - to bring all the lights up to full brightness, as a way to 'kick-start' the morning wake-up routine. 
 
+2021-03-17:
 
+- Refactor lightkit.py to use requests instead of urllib3. The idea is to make PyLights portable to the [CircuitPython](https://circuitpython.org/) platform, which uses [adafruit_requests](https://circuitpython.readthedocs.io/projects/requests/en/latest/), which is very similar (for .get() and .put() calls at least).
+- With [CircuitPython](https://circuitpython.org/) in mind, add a CONST for the statefile location.
+- Implement secrets.py to keep API keys, credentials, and other stuff that doesn't belong in a public repo. Edit/rename secrets_sample.py to use.
+- With the switch to using requests, PyLights will require the addition of that module (maybe others in the future). For completeness, I've run 'pip freeze' to create requirements.txt for building a target platform.

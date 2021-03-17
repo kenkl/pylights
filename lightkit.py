@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
   
-import subprocess
-import urllib.request
+import requests
 import json, time, os
+from secrets import secrets
 from time import sleep, strftime
 from datetime import datetime
 
-# The Hue Bridge presents a self-signed cert, so let's skip the checks for that
-import ssl
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# The Hue Bridge presents a self-signed cert, so let's skip the checks for that. Calls to requests will still throw a warning with 'verify=False' - mute those with:
+requests.packages.urllib3.disable_warnings()
 
 # Useful globals
-hostname='huehub.kenkl.org'
-apikey='RPVo8wEXziF6OeLtCaCUqMdqWm28DrKqVQL7ftgG' # See (TODO: add reference) to get a Bridge API Key
+hostname=secrets['huehostname']
+apikey=secrets['hueapikey']
 baseurl="https://"+hostname+"/api/"+apikey
+STATEFILEPATH = '/tmp' # Where to store statefiles 
 CTWARM = 400
 CTCOOL = 330
 HRED = 0
@@ -30,7 +28,7 @@ def lighturl(i):
 
 def statefilename(i):
     '''Returns the path for a state file name to use for saving/restoring state of a unit'''
-    return f"/tmp/pylights.{i}.state"
+    return f"{STATEFILEPATH}/pylights.{i}.state"
 
 def getstate(i):
     '''Returns the full JSON state of a single unit'''
@@ -77,8 +75,7 @@ def restorestate(i, rmstatefile=True):
         with open(sf) as statefile:
             state = bytearray(statefile.read(), 'utf-8')
         url = lighturl(i) + "/state"
-        wr = urllib.request.Request(url, state, method='PUT')
-        urllib.request.urlopen(wr, context=ctx)
+        r = requests.put(url, state, verify=False)
         if rmstatefile:
             os.remove(sf)
 
@@ -121,15 +118,13 @@ def oneon(i):
     '''Simply turn on a single unit'''
     url=lighturl(i)+"/state"
     dothis=b'{"on": true}'
-    wr=urllib.request.Request(url, data=dothis, method='PUT')
-    urllib.request.urlopen(wr, context=ctx)
+    r = requests.put(url, dothis, verify=False)
 
 def oneoff(i):
     '''Simply turn off a single unit'''
     url=lighturl(i)+"/state"
     dothis=b'{"on": false}'
-    wr=urllib.request.Request(url, data=dothis, method='PUT')
-    urllib.request.urlopen(wr, context=ctx)
+    r = requests.put(url, dothis, verify=False)
 
 def on(units, state=True):
     '''Turn on (or off) a set of lights'''
@@ -148,12 +143,16 @@ def on(units, state=True):
         print("Fail. on() needs either an int with a single unit, or a list with multiple units. You provided:")
         print(type(units))
 
+def off(units):
+    '''Turn off a set of lights'''
+    # This is only here to maintain symmetry with the on() call
+    on(units, state=False)
+
 
 def getlights():
-    '''Gets the complete state of the Bridge and returns the Lights node'''
-    wr=urllib.request.urlopen(baseurl, context=ctx)
-    wd=wr.read()
-    resp=json.loads(wd)
+    '''Returns the lights node from the Hue Bridge'''
+    r = requests.get(baseurl, verify=False)
+    resp = r.json()
     lights=resp['lights']
     return lights
 
@@ -194,7 +193,6 @@ def gethrstate(i):
     except KeyError:
         cm="N/A"
 
-
     print("Unit %i - %s:"%(i,name))
     print("On:", ison)
     print("Brightness:", bri)
@@ -223,7 +221,7 @@ def lightlist():
             rs = ""
         else:
             rs = "*** UNREACHABLE ***"
-        print(i,name,"  "+onoff+"  "+rs)
+        print(f"{rs}{i} {name}  {onoff}")
 
 def allalloff():
     '''Turns off ALL the lights known to the Bridge'''
@@ -236,16 +234,14 @@ def sethue(i, h=7676, s=143):
     url=lighturl(i)+"/state"
     dothis='{"hue": '+str(h)+', "sat": '+str(s)+'}'
     dothis=dothis.encode('utf-8')
-    wr=urllib.request.Request(url, data=dothis, method='PUT')
-    urllib.request.urlopen(wr, context=ctx)
+    r = requests.put(url, dothis, verify=False)
 
 def setct(i, ct):
     '''Set colour-temperature value for a single unit'''
     url=lighturl(i)+"/state"
     dothis='{"ct": '+str(ct)+'}'
     dothis=dothis.encode('utf-8')
-    wr=urllib.request.Request(url, data=dothis, method='PUT')
-    urllib.request.urlopen(wr, context=ctx)
+    r = requests.put(url, dothis, verify=False)
 
 def setcts(units, ct):
     '''set colour-temperature value for a set of lights'''
@@ -267,8 +263,7 @@ def setlevel(i, b=254):
     url=lighturl(i)+"/state"
     dothis='{"bri": '+str(b)+'}'
     dothis=dothis.encode('utf-8')
-    wr=urllib.request.Request(url, data=dothis, method='PUT')
-    urllib.request.urlopen(wr, context=ctx)
+    r = requests.put(url, dothis, verify=False)
 
 def toggle(i):
     '''Toggle the on state of a single unit'''

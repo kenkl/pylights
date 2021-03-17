@@ -1,4 +1,7 @@
 __pycache__/
 *.py[cod]
 archive/
+.env/
+.vscode/
+secrets.py
 

@@ -147,6 +147,10 @@ def brdl(onstate=True, bri=254, ct=CTCOOL):
     units = [30, 31, 32, 33]
     dl(units, onstate, bri, ct)
 
+def alldl(onstate=True, bri=254, ct=CTCOOL):
+    kdl(onstate, bri, ct)
+    lrdl(onstate, bri, ct)
+    brdl(onstate, bri, ct)
 
 
 def rnl(on=True):
