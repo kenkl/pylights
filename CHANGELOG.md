@@ -58,6 +58,10 @@ The theme today is getting stateful toggling supported with a number of function
 - Spent a bit of time with a [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/) equipped with an [AirLift breakout](https://www.adafruit.com/product/4201) to get it on WiFi and running [CircuitPython](https://circuitpython.org/). Got "this close" to having it working, but ran into problems with adafruit_request.get() communicating with the Hue Bridge - was getting 0-byte responses (which json.dumps() didn't like _at all_) instead of the ~105KB that my Bridge serves up normally. I'm still investigating why it's doing that - test calls to other REST endpoints (that don't push back quite as much data) seem to work just fine.
 - Putting the Pico on the side for a bit, I turned my attention to a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) instead. It has no trouble at all hosting pylights, so I wired up a few buttons to trigger calls into scenes.py. The new code here is in butthing.py (button thing) - it does require [gpiozero](https://gpiozero.readthedocs.io/en/stable/), but that's installed by default on recent/current versions of [Raspbian](https://www.raspbian.org/). 
 
+2021-03-20:
+
+- Tweak fakesun.py to include _even more_ downlights in the group. 
+
 2021-03-26:
 
 - Add espresso.py - a shim into lightkit to turn the espresso machine on/off or get its current state for scripting/crontab. The target is a [Philips Hue Smart Plug](https://www.amazon.com/gp/product/B07XD578LD) that, like the [INNR Smart Plug](https://www.amazon.com/Zigbee-Philips-SmartThings-Google-Required/dp/B07SQGG8Z7), only supports ON/OFF. It's a minor QoL thing that probably doesn't deserve this much commentary, but here we are. ☕️

@@ -9,7 +9,8 @@ sleepInterval = (minutes * 60) / 254
 
 # see lightlist.py for unit number(s)
 #units = [21, 38]
-units = [16, 30, 31, 32, 33]
+#units = [16, 30, 31, 32, 33]
+units = [16, 30, 31, 32, 33, 22, 23, 24, 25]
 
 def doThing(lights, brightness):
     for light in lights:
