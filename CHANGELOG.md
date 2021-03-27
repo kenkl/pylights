@@ -66,3 +66,8 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Add espresso.py - a shim into lightkit to turn the espresso machine on/off or get its current state for scripting/crontab. The target is a [Philips Hue Smart Plug](https://www.amazon.com/gp/product/B07XD578LD) that, like the [INNR Smart Plug](https://www.amazon.com/Zigbee-Philips-SmartThings-Google-Required/dp/B07SQGG8Z7), only supports ON/OFF. It's a minor QoL thing that probably doesn't deserve this much commentary, but here we are. ☕️
 
+2021-03-27:
+
+- See the commit diff for details - added scene presets for living room, home office, and bedroom, including SP2, to mimic what we've got in [Lights](https://github.com/kenkl/lights).
+- Add call and call.py to shim calls into scenes.py (and lightkit.py) from the command-line, making it possible to script/cronjob functions contained therein without dedicated scripts.
+

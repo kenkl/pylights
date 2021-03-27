@@ -265,6 +265,22 @@ def setlevel(i, b=254):
     dothis=dothis.encode('utf-8')
     r = requests.put(url, dothis, verify=False)
 
+def setsp2(units, sp2bri=76):
+    '''Set SP2 for named unit(s)'''
+    # This is my standardised reminder to go to bed - Sleep Protocol, part 2
+    sp2hue = 3771
+    sp2sat = 240
+    if isinstance(units, list):
+        sethues(units, hue=sp2hue, sat=sp2sat)
+        setlevels(units, bri=sp2bri)
+    elif isinstance(units, int):
+        sethue(units, h=sp2hue, s=sp2sat)
+        setlevel(units, b=sp2bri)
+    else:
+        print("Fail. setsp2() needs an int or list. You provided:")
+        print(type(units))
+
+
 def toggle(i):
     '''Toggle the on state of a single unit'''
     if ison(i):
