@@ -4,7 +4,7 @@
 from lightkit import *
 
 # How many minutes should the "sunrise" take? 
-minutes = 12
+minutes = 7
 sleepInterval = (minutes * 60) / 254
 
 # see lightlist.py for unit number(s)
