@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+cd /usr/local/bin/pylights
+. .env/bin/activate
+./listener.py >> /var/log/listener.log 2>&1
+

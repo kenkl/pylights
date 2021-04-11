@@ -71,3 +71,8 @@ The theme today is getting stateful toggling supported with a number of function
 - See the commit diff for details - added scene presets for living room, home office, and bedroom, including SP2, to mimic what we've got in [Lights](https://github.com/kenkl/lights).
 - Add call and call.py to shim calls into scenes.py (and lightkit.py) from the command-line, making it possible to script/cronjob functions contained therein without dedicated scripts.
 
+2021-04-11:
+
+- Added listener and listener.py as a Flask-powered remote interface to scenes (and lightkit, by extension). At present, it runs on the same RaspberryPI that I've got butthing.py running on, serving as a shim to the Hue ecosystem, much like [Lights](https://github.com/kenkl/lights) does. 
+- Updated requirements.txt to reflect the addition of Flask to the project.
+
