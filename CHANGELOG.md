@@ -76,3 +76,11 @@ The theme today is getting stateful toggling supported with a number of function
 - Added listener and listener.py as a Flask-powered remote interface to scenes (and lightkit, by extension). At present, it runs on the same RaspberryPI that I've got butthing.py running on, serving as a shim to the Hue ecosystem, much like [Lights](https://github.com/kenkl/lights) does. 
 - Updated requirements.txt to reflect the addition of Flask to the project.
 
+2021-04-15:
+
+- Add goodmorning() macro to scenes.py 
+- Move espresso() macro to scenes.py
+- Move fakesun() macro to scenes.py
+- Remove the external versions of goodmorning, espresso, fakesun, and lightlist; with the call/call.py functionality, they aren't needed any more.
+- One of the annoying things that fakesun has revealed - the light will come on to the last brightness used if not overriden during the state change. onwithbri() is added to lightkit to address this. I _may_ circle back to refactor on(), oneon(), off(), etc. to use it, but that's not a high priority right this minute...
+

@@ -143,6 +143,33 @@ def on(units, state=True):
         print("Fail. on() needs either an int with a single unit, or a list with multiple units. You provided:")
         print(type(units))
 
+def onwithbri(units, state=True, b=0):
+    '''Turn on/off unit(s) at a specific brightness'''
+    # Lights will come on, by default/design at their last brightness level. This is meant to override that. 
+    if isinstance(units, list):
+        if not state:
+            off(units)
+        else:
+            for unit in units:
+                url=lighturl(unit)+"/state"
+                dothis='{"on": true, "bri": ' + str(b) + '}'
+                dothis=dothis.encode('utf-8')
+                r = requests.put(url, dothis, verify=False)
+    elif isinstance(units, int):
+        if not state:
+            off(units)
+        else:
+            url = lighturl(units)+"/state"
+            dothis='{"on": true, "bri": ' + str(b) + '}'
+            dothis=dothis.encode('utf-8')
+            r = requests.put(url, dothis, verify=False)
+    else:
+        print("Fail. onwithbri() needs either an int with a single unit, or a list with multiple units. You provided:")
+        print(type(units))
+
+
+
+
 def off(units):
     '''Turn off a set of lights'''
     # This is only here to maintain symmetry with the on() call

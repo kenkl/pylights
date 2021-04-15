@@ -260,7 +260,6 @@ def alldl(onstate=True, bri=254, ct=CTCOOL):
     lrdl(onstate, bri, ct)
     brdl(onstate, bri, ct)
 
-
 def rnl(on=True):
     '''Random Night Light on/off'''
     rnl = 10
@@ -271,8 +270,53 @@ def rnl(on=True):
     else:
         oneoff(rnl)
 
-
+def espresso(state=False):
+    '''Turn the espresso machine on/off'''
+    # Default to turning it off. Y'know, for safety's sake.
+    em = 40 # The Espresso Machine's Hue ID presence
+    on(em, state)
     
+def goodmorning():
+    '''Turn on ALL the lights in the house'''
+    # "Good morning, houseplants. Yes, it's wake-up time."
+    # The PHP version in Lights works really well. Let's ape that, with order and everything. First, all the table lamps and such, and THEN the downlights.
+    
+    # Living room:
+    units = [11,12,13,14,15,35]
+    on(units)
+    sethues(units)
+    setlevels(units)
+    setlevel(35,73) # The edison-bulb lamp needs to be not quite so bright
+    on([17,20]) # The candlebox lamps
+
+    #Bedroom
+    units = [5,16,36]
+    on(units)
+    sethues(units)
+    setlevels(units, 127)
+    on(9)
+    
+    # Everything else, including downlights and dangling statefiles
+    hueaccent(True)
+    alldl()
+    clearallstates()
+    
+def fakesun():
+    '''Simulated sunrise'''
+    # How many minutes should the "sunrise" take? 
+    minutes = 7
+    sleepInterval = (minutes * 60) / 25
+    units = [16, 30, 31, 32, 33, 22, 23, 24, 25]
+
+    # Get everyone turned on, at minimal brighness to start...
+    onwithbri(units, True, b=0)
+    #setlevels(units=units, bri=0)
+    setcts(units, CTCOOL)
+    # then, step (slowly) through them all to bring them up
+    for level in range(0, 255):
+        print(f"Level {level}")   # TODO: remove this - just diagnosing functionality
+        setlevels(units, level)
+        sleep(sleepInterval)
 
 # Other (O) (test) scenes
 
