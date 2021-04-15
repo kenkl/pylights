@@ -314,7 +314,6 @@ def fakesun():
     setcts(units, CTCOOL)
     # then, step (slowly) through them all to bring them up
     for level in range(0, 255):
-        print(f"Level {level}")   # TODO: remove this - just diagnosing functionality
         setlevels(units, level)
         sleep(sleepInterval)
 
