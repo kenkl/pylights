@@ -84,3 +84,6 @@ The theme today is getting stateful toggling supported with a number of function
 - Remove the external versions of goodmorning, espresso, fakesun, and lightlist; with the call/call.py functionality, they aren't needed any more.
 - One of the annoying things that fakesun has revealed - the light will come on to the last brightness used if not overriden during the state change. onwithbri() is added to lightkit to address this. I _may_ circle back to refactor on(), oneon(), off(), etc. to use it, but that's not a high priority right this minute...
 
+2021-04-16:
+
+- Add a mutiplier to fakesun() to reduce the sleep interval on the iterations through its loop for increasing brightness. It's a really squishy number; the delay is variable based on the number of lights, the length of the run, whatever processing the bridge has to do, how quickly the lights respond, etc. etc. etc. For my 7-minute cycle with 9 lights, I was actually seeing fakesun() take as much as 14 minutes. This helps a bit. Reducing sleepInterval further runs up against hard limits/race conditions, so.
