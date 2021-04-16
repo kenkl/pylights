@@ -305,7 +305,7 @@ def fakesun():
     '''Simulated sunrise'''
     # How many minutes should the "sunrise" take? 
     minutes = 7
-    sleepInterval = (minutes * 60) / 25
+    sleepInterval = (minutes * 60) / 254
     units = [16, 30, 31, 32, 33, 22, 23, 24, 25]
 
     # Get everyone turned on, at minimal brighness to start...
