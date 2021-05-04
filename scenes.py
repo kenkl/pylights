@@ -83,7 +83,7 @@ def hosp2(force=False):
 
 # Living Room (LR) scenes
 def lroff():
-    units = [11, 12, 13, 14, 15, 17, 20, 35, 28, 29, 39]
+    units = [11, 12, 13, 14, 15, 17, 20, 28, 29, 39]
     off(units)
     lrdl(onstate=False)
 
@@ -97,9 +97,6 @@ def lrnormal(fulldl=False):
     setlevels(units)
     for light in units:
         sethue(light)
-    # The edison bulb is a special case.
-    on(35)
-    setlevel(35, 73)
     # In Lights, we do a conditional - if we're already on, toggle the brightness of the DLs. I kinda like that, so...
     keylight = getstate(25)  # let's key off the far corner DL...
     if not keylight['on']:
@@ -121,8 +118,6 @@ def lrteevee():
     setlevels(units, bri=154)
     sethues(units, hue=8402, sat=143)
     # The edison bulb is a special case.
-    on(35)
-    setlevel(35, 1)
     lrdl(onstate=True, bri=1, ct=CTWARM)
     if ison(9): # If the bedroom is on, bring it down
         brmin()
@@ -134,7 +129,6 @@ def lrcinema():
     setlevels(units, bri=39)
     sethues(units, hue=8402, sat=140)
     # The edison bulb is a special case.
-    off(35)
     lrdl(onstate=False)
     if ison(9): # If the bedroom is on, bring it down
         brmin()
@@ -145,7 +139,7 @@ def lrsp2(force=False):
         on(units) # assuming that the key is off, but we got here by force
         setsp2(units)
         setlevels([28, 29, 39], 16) # TV backlights should not be so bright
-        off([17, 20, 35]) # Candleboxes and Edison bulb are off now
+        off([17, 20]) # Candleboxes and Edison bulb are off now
         lrdl(False)
         brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
@@ -275,6 +269,7 @@ def espresso(state=False):
     # Default to turning it off. Y'know, for safety's sake.
     em = 40 # The Espresso Machine's Hue ID presence
     on(em, state)
+    onwithbri(35, state, 96) # The worklight follows the machine
     
 def goodmorning():
     '''Turn on ALL the lights in the house'''
@@ -282,11 +277,10 @@ def goodmorning():
     # The PHP version in Lights works really well. Let's ape that, with order and everything. First, all the table lamps and such, and THEN the downlights.
     
     # Living room:
-    units = [11,12,13,14,15,35]
+    units = [11,12,13,14,15]
     on(units)
     sethues(units)
     setlevels(units)
-    setlevel(35,73) # The edison-bulb lamp needs to be not quite so bright
     on([17,20]) # The candlebox lamps
 
     #Bedroom
@@ -298,6 +292,7 @@ def goodmorning():
     
     # Everything else, including downlights and dangling statefiles
     hueaccent(True)
+    onwithbri(35, True, 96) # Coffee station worklight
     alldl()
     clearallstates()
     
