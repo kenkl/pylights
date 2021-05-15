@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
   
 import requests
-import json, time, os
+import json, time, os, smtplib
 from secrets import secrets
 from time import sleep, strftime
 from datetime import datetime
@@ -314,6 +314,45 @@ def toggle(i):
         oneoff(i)
     else:
         oneon(i)
+
+def notify(message):
+    '''send an email/text to destination(s) defined in secrets.py when something needs to alert'''
+    try:
+        myemail = secrets['myemail']
+        password = secrets['email_password']
+        host = secrets['email_host']
+        port = secrets['email_port']
+        email_dest = secrets['email_dest']
+
+        with smtplib.SMTP(host, port=port) as connection:
+            connection.starttls()
+            connection.login(myemail, password)
+            connection.sendmail(myemail, email_dest, msg=message)
+    except Exception as e:
+        print(f"Sending notification failed:")
+        if hasattr(e, 'message'):
+            print(e.message)
+        else:
+            print(e)
+
+def checkall():
+    '''Detect whether any units have gone unreachable, and send a list via notify() if they have'''
+    send_alert = False  # Flag whether we found any
+    message = 'Units UNREACHABLE\n'
+    lights = getlights()
+    for i in lights.keys():
+        unitid = lights[i]
+        state = unitid['state']
+        name = unitid['name']
+        reachable = state['reachable']
+        if not reachable:
+            message += f"{i} - {name}\n"
+            send_alert = True
+    if send_alert:
+        print(message)
+        notify(message)
+    return send_alert
+
 
 
 if __name__ == '__main__':

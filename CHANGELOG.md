@@ -91,3 +91,10 @@ The theme today is getting stateful toggling supported with a number of function
 2021-05-04:
 
 - Moved the light (#35) from the end-table to the coffee station. Update scenes accordingly...
+
+2021-05-15:
+
+- add checkall() to sweep through all known units and report any that have gone unreachable.
+- add notify() to support checkall() (and future capabilities) to send email/text/whatever as appropriate.
+- document/add new entries to secrets.py to support notify()
+
