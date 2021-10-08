@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 from scenes import *
 
 app = Flask(__name__)
@@ -16,14 +16,18 @@ def api():
     gotthis = eval(call)
     if not gotthis == None:
         if isinstance(gotthis, str) or isinstance(gotthis, dict):
-            return gotthis
+            #return gotthis
+            return render_template('apidone.html')
         elif isinstance(gotthis, bool) or isinstance(gotthis, list) or isinstance(gotthis, tuple):
-            return str(gotthis)
+            #return str(gotthis)
+            return render_template('apidone.html')
         else:
-            return gotthis
+            #return gotthis
+            return render_template('apidone.html')
         
     else:
-        return call
+        #return call
+        return render_template('apidone.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)

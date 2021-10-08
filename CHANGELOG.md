@@ -98,3 +98,6 @@ The theme today is getting stateful toggling supported with a number of function
 - add notify() to support checkall() (and future capabilities) to send email/text/whatever as appropriate.
 - document/add new entries to secrets.py to support notify()
 
+2021-10-08:
+
+- change @app.route('/api') to return a page from /templates instead of a simple call echo. This enables building a simple .html page that calls API endpoints and will 'force' the browser back a page (with window.history.back() in the body tag) to streamline the behaviour a little when calling from a browser.
