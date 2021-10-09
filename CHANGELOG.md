@@ -101,3 +101,9 @@ The theme today is getting stateful toggling supported with a number of function
 2021-10-08:
 
 - change @app.route('/api') to return a page from /templates instead of a simple call echo. This enables building a simple .html page that calls API endpoints and will 'force' the browser back a page (with window.history.back() in the body tag) to streamline the behaviour a little when calling from a browser.
+
+2021-10-09:
+
+- Now that API calls don't "strand" the browser, assembled a simple prototype page to make the calls from the browser and serve that up at @app.route('/'). It's crude, but works well enough to get more ideas.
+- Update requirements.txt to quiet GitHub hollering at me about urllib3's vulnerabilities (older version)
+- Other little bugfixes
