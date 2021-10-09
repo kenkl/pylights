@@ -8,7 +8,8 @@ app = Flask(__name__)
 @app.route('/')
 def default_page():
     text = 'call with /api?call=scenefunction() with NO embedded spaces.\n\n'
-    return text
+    #return text
+    return render_template('top.html')
 
 @app.route('/api')
 def api():

@@ -92,6 +92,7 @@ def lrtvbloff(): # If we're streaming to the TV backlights, this will be NOOP
     off(units)
 
 def lrnormal(fulldl=False):
+    lrtvbloff()
     units = [11, 12, 13, 14, 15, 17, 20]
     on(units)
     setlevels(units)
