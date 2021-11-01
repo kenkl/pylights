@@ -107,3 +107,8 @@ The theme today is getting stateful toggling supported with a number of function
 - Now that API calls don't "strand" the browser, assembled a simple prototype page to make the calls from the browser and serve that up at @app.route('/'). It's crude, but works well enough to get more ideas.
 - Update requirements.txt to quiet GitHub hollering at me about urllib3's vulnerabilities (older version)
 - Other little bugfixes
+
+2021-11-01:
+
+- As an alternate to SP2 mode in the living room, created 'lrcbon()' to turn off everything except the two candlebox units. Very very minor addition.
+

@@ -140,10 +140,17 @@ def lrsp2(force=False):
         on(units) # assuming that the key is off, but we got here by force
         setsp2(units)
         setlevels([28, 29, 39], 16) # TV backlights should not be so bright
-        off([17, 20]) # Candleboxes and Edison bulb are off now
+        off([17, 20]) # Candleboxes are off now
         lrdl(False)
         brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
+
+def lrcbon():
+    '''An alternative to SP2 - candleboxes on, everything else off'''
+    units = [11, 12, 13, 14, 15, 28, 29, 39]
+    off(units)
+    lrdl(onstate=False)
+    on([17,20])
 
 # Bedroom (BR) scenes
 def broff():
