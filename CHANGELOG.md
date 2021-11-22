@@ -112,3 +112,6 @@ The theme today is getting stateful toggling supported with a number of function
 
 - As an alternate to SP2 mode in the living room, created 'lrcbon()' to turn off everything except the two candlebox units. Very very minor addition.
 
+2021-11-21:
+
+- Add lrteevee2() - an alternate to TV mode that's a bit darker, but not as much as cinema mode.

@@ -152,6 +152,13 @@ def lrcbon():
     lrdl(onstate=False)
     on([17,20])
 
+def lrteevee2():
+    ''' Alternate TV mode with everything dimmed, but downlights still active '''
+    lrcbon()  # kill everything except the candleboxes
+    lrdl(True, bri=1, ct=CTWARM) # bring the downlights up to a minimal state
+    onwithbri([11,12],True,b=55) # table lamps on dimly
+
+
 # Bedroom (BR) scenes
 def broff():
     units = [5, 9, 16, 36]
