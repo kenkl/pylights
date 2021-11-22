@@ -115,3 +115,10 @@ The theme today is getting stateful toggling supported with a number of function
 2021-11-21:
 
 - Add lrteevee2() - an alternate to TV mode that's a bit darker, but not as much as cinema mode.
+
+2021-11-22:
+
+- Add simple routine for turning off/on the tall dragonfly (with 3 lights). Because...
+- Refactor lrteevee2() to use lrdfoff() to be a smoother transition
+- Update listener top.html to include calls to these new functions
+
