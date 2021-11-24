@@ -110,7 +110,7 @@ The theme today is getting stateful toggling supported with a number of function
 
 2021-11-01:
 
-- As an alternate to SP2 mode in the living room, created 'lrcbon()' to turn off everything except the two candlebox units. Very very minor addition.
+- As an alternate to SP2 mode in the living room, created 'lrcbon()' to turn off everything except the two candlebox units
 
 2021-11-21:
 
@@ -122,3 +122,8 @@ The theme today is getting stateful toggling supported with a number of function
 - Refactor lrteevee2() to use lrdfoff() to be a smoother transition
 - Update listener top.html to include calls to these new functions
 
+2021-11-23:
+
+- bugfix for lrteevee2() - let's turn on the candleboxes too...
+- add lrread() - reading lights in the living room
+- add brread() - bedroom reading light

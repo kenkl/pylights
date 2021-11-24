@@ -154,8 +154,8 @@ def lrcbon():
 
 def lrteevee2():
     ''' Alternate TV mode with everything dimmed, but downlights still active '''
-    #lrcbon()  # kill everything except the candleboxes
-    lrdfoff()
+    lrdfoff() # Tall dragonfly lamp off
+    on([17,20]) # candleboxes on
     lrdl(True, bri=1, ct=CTWARM) # bring the downlights up to a minimal state
     onwithbri([11,12],True,b=55) # table lamps on dimly
 
@@ -166,6 +166,11 @@ def lrdfoff():
 def lrdfon():
     ''' just turn on the three lights in the tall dragonfly lamp. for reasons. '''
     on([13,14,15])
+
+def lrread():
+    ''' turn on, full brightness, the lights for reading (a book) 
+    TODO: could make this a toggle, maybe? '''
+    onwithbri([13,14,15,23],True,b=255)
 
 # Bedroom (BR) scenes
 def broff():
@@ -203,6 +208,9 @@ def brsp2(force=False):
         setsp2(16, 16)
         brdl(False)
 
+def brread(on=True):
+    onwithbri(5,on,b=254)
+
 # Kitchen (K) scenes
 def kcstog():
     '''Kitchen Coffee Shop scene'''
@@ -235,7 +243,7 @@ def kcstog():
 # allalloff() already exists in lightkit, FYI
 def hueaccent(on=True):
     '''Turn on/off the accent lights in the LR and Kitchen'''
-    units = [4, 26, 27, 34]
+    units = [4, 26, 27, 34, 41]
     if on:
         for light in units:
             oneon(light)
@@ -293,6 +301,7 @@ def espresso(state=False):
     em = 40 # The Espresso Machine's Hue ID presence
     on(em, state)
     onwithbri(35, state, 96) # The worklight follows the machine
+    on(41) # Coffee station fairy lights
     
 def goodmorning():
     '''Turn on ALL the lights in the house'''
@@ -316,6 +325,7 @@ def goodmorning():
     # Everything else, including downlights and dangling statefiles
     hueaccent(True)
     onwithbri(35, True, 96) # Coffee station worklight
+    on(41) # Kitchen fairy lights (coffee station)
     alldl()
     clearallstates()
     
