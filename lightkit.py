@@ -255,6 +255,7 @@ def allalloff():
     lights=getlights()
     for i in lights.keys():
         oneoff(i)
+    clearallstates()
 
 def sethue(i, h=7676, s=143):
     '''Set hue/saturation values for a single unit'''

@@ -202,14 +202,23 @@ def brmin():
 
 def brsp2(force=False):
     units = [5, 9, 36]
-    if ison(16) or force: # keyed on the bedside table light
+    if ison(16) or ison(36) or force: # keyed on the bedside table light
         on(16) # the key is off, but we got here by force
         off(units)
         setsp2(16, 16)
         brdl(False)
 
-def brread(on=True):
-    onwithbri(5,on,b=254)
+def brread():
+    '''Stateful toggle of the reading light'''
+    unit = 5
+    if checkstate(unit): 
+        # statefile exists, so let's roll it back...
+        restorestate(unit)
+    else:
+        # statefile doesn't exist. let's create one for a toggle and turn it on...
+        savestate(unit)
+        onwithbri(unit,on,b=254)
+        sethue(unit) # force warm white for colour
 
 # Kitchen (K) scenes
 def kcstog():

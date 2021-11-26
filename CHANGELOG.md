@@ -127,3 +127,12 @@ The theme today is getting stateful toggling supported with a number of function
 - bugfix for lrteevee2() - let's turn on the candleboxes too...
 - add lrread() - reading lights in the living room
 - add brread() - bedroom reading light
+
+2021-11-26:
+
+- bugfix for brsp2() - it wasn't checking the right lights for the conditional transition
+- Upgrade the bedroom reading light (5) to a proper stateful toggle
+- allalloff() should clear all dangling statefiles. It does now.
+- Update listener's top.html to reflect the stateful toggle
+- Add a 'clearallstates()' call in top.html utilities
+

@@ -63,8 +63,7 @@
                     <a class="dropdown-item" href="/api?call=brfull()">All on FULL (be careful!)</a>
                     <a class="dropdown-item" href="#">---------------------------</a>
                     <a class="dropdown-item" href="/api?call=brsp2(force=True)">SP2 mode (forced)</a>
-                    <a class="dropdown-item" href="/api?call=brread(True)">Reading light ON</a>
-                    <a class="dropdown-item" href="/api?call=brread(False)">Reading light OFF</a>
+                    <a class="dropdown-item" href="/api?call=brread()">Toggle reading light</a>
                     <a class="dropdown-item" href="#">---------------------------</a>
                     <a class="dropdown-item" href="/api?call=broff()">All off</a>
                 </div>
@@ -210,6 +209,15 @@
             </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
                     <a class="dropdown-item" href="/api?call=allalloff()">Yep - turn off EVERYTHING.</a>
+                </div>
+            </div>
+            
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop4" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               CLEAR dangling statefiles
+            </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                    <a class="dropdown-item" href="/api?call=clearallstates()">CONFIRM - clear dangling statefiles</a>
                 </div>
             </div>
 
