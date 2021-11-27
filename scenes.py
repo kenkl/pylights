@@ -168,9 +168,20 @@ def lrdfon():
     on([13,14,15])
 
 def lrread():
-    ''' turn on, full brightness, the lights for reading (a book) 
-    TODO: could make this a toggle, maybe? '''
-    onwithbri([13,14,15,23],True,b=255)
+    ''' Stateful toggle, to full brightness, the lights for reading (a book) '''
+    units = [13,14,15,23]
+    if not checkstate(23): # keyed on the downlight
+        #no statefile found, so we're not in-progress...
+        for light in units:
+            savestate(light)
+        onwithbri(units,True,b=255)
+        for light in units:
+            sethue(light) # force warm white for these
+    else: #key's in progress, so restore the state...
+        for light in units:
+            restorestate(light)
+            
+
 
 # Bedroom (BR) scenes
 def broff():
@@ -223,7 +234,7 @@ def brread():
 # Kitchen (K) scenes
 def kcstog():
     '''Kitchen Coffee Shop scene'''
-    units = [4, 6, 7, 8, 27, 34]
+    units = [4, 6, 7, 8, 27, 34, 41]
     if not checkstate(8): # keyed off the downlight at the far end; if it's in-progress, they all are
         # no statefile found. first, save states
         for light in units:

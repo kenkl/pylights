@@ -135,4 +135,6 @@ The theme today is getting stateful toggling supported with a number of function
 - allalloff() should clear all dangling statefiles. It does now.
 - Update listener's top.html to reflect the stateful toggle
 - Add a 'clearallstates()' call in top.html utilities
+- Upgrade lrread() to be a stateful toggle
+- add a call to kcstog() in top.html utilities
 
