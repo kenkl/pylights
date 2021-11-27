@@ -138,3 +138,7 @@ The theme today is getting stateful toggling supported with a number of function
 - Upgrade lrread() to be a stateful toggle
 - add a call to kcstog() in top.html utilities
 
+2021-11-27:
+
+- Add a simple xmastree() call in scenes.py to turn the Xmas tree on/off. Tis the season!
+- ...and add an entry in top.html utilities to manage it...

@@ -366,6 +366,16 @@ def fakesun():
         setlevels(units, level)
         sleep(sleepInterval)
 
+def xmastree(on=True):
+    xmastreehost = 'http://speck.kenkl.org:5000/'
+    treeon = xmastreehost+'red'
+    treeoff = xmastreehost+'treeoff'
+    if on:
+        r = requests.get(treeon)
+    else:
+        r = requests.get(treeoff)
+
+
 # Other (O) (test) scenes
 
 
