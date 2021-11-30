@@ -142,3 +142,7 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Add a simple xmastree() call in scenes.py to turn the Xmas tree on/off. Tis the season!
 - ...and add an entry in top.html utilities to manage it...
+
+2021-11-30:
+
+- After rearranging the living room, the SP2 event needs minor revision, so let's do that.

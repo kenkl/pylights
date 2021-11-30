@@ -135,12 +135,14 @@ def lrcinema():
         brmin()
 
 def lrsp2(force=False):
-    units = [11, 12, 13, 14, 15, 28, 29, 39]
-    if ison(14) or force: # keyed on one of the bulbs in the big dragonfly floor lamp
-        on(units) # assuming that the key is off, but we got here by force
+    # 2021-11-30: revising the behaviour of SP2 after moving lights around the room 
+    units = [11, 12, 13, 14, 15, 28, 29, 39] # this probably isn't needed now
+    if ison(12) or force: # keyed on the end-table lamp
+        on([28,29]) # the two lower backlights should always be on here.
         setsp2(units)
         setlevels([28, 29, 39], 16) # TV backlights should not be so bright
-        off([17, 20]) # Candleboxes are off now
+        off(39) # The play light strip is still a bit bright, so...
+        off([17, 20]) # Candleboxes off
         lrdl(False)
         brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
