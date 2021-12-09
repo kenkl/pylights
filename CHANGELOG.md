@@ -146,3 +146,7 @@ The theme today is getting stateful toggling supported with a number of function
 2021-11-30:
 
 - After rearranging the living room, the SP2 event needs minor revision, so let's do that.
+
+2021-12-09:
+
+- Bugfixes for lrsp2() - set the colour temperature and turn off the TV backlight.

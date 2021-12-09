@@ -156,10 +156,12 @@ def lrcbon():
 
 def lrteevee2():
     ''' Alternate TV mode with everything dimmed, but downlights still active '''
+    lrtvbloff()
     lrdfoff() # Tall dragonfly lamp off
     on([17,20]) # candleboxes on
     lrdl(True, bri=1, ct=CTWARM) # bring the downlights up to a minimal state
     onwithbri([11,12],True,b=55) # table lamps on dimly
+    sethues([11,12], hue=8402, sat=143)
 
 def lrdfoff():
     ''' just turn off the three lights in the tall dragonfly lamp. for reasons. '''
