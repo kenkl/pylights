@@ -10,30 +10,30 @@ def hoalloff():
     for light in units:
         oneoff(light)
 
-def hofull():
+def hofull(ct=CTWARM):
     units = [3, 19, 18, 21, 37, 38]
     on(units)
-    setcts(units, CTWARM)
+    setcts(units, ct)
     setlevels(units, bri=254)
 
-def honormal():
+def honormal(ct=CTWARM):
     # Monitor backlights
     mbl = [3, 19]
     for l in mbl:
         oneon(l)
-        setct(l, CTWARM)
+        setct(l, ct)
         setlevel(l, 128)
     # Dragonfly Lamp
     oneon(18)
     # Swing arm
     sal = 21
     oneon(sal)
-    setct(sal, CTWARM)
+    setct(sal, ct)
     setlevel(sal)
     # Floor lamp
     fl = 38
     oneon(fl)
-    setct(fl, CTWARM)
+    setct(fl, ct)
     setlevel(fl)
     # Worklight
     oneoff(37)

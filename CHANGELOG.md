@@ -150,3 +150,8 @@ The theme today is getting stateful toggling supported with a number of function
 2021-12-09:
 
 - Bugfixes for lrsp2() - set the colour temperature and turn off the TV backlight.
+
+2021-12-14:
+
+- Add colour-temperature argument-parsing to hofull() and honormal().
+- Add corresponding entries to top.html for use from the Flask listener.
