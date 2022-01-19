@@ -155,3 +155,9 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Add colour-temperature argument-parsing to hofull() and honormal().
 - Add corresponding entries to top.html for use from the Flask listener.
+
+2022-01-19:
+
+- Remove the bedroom lights from fakesun(). Even at 0 brightness, these come on bright enough to be jarring.
+- Add .DS_Store to .gitignore (not sure why that wasn't already there).
+

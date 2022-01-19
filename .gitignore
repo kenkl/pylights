@@ -4,4 +4,4 @@ archive/
 .env/
 .vscode/
 secrets.py
-
+.DS_Store
