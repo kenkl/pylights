@@ -161,3 +161,7 @@ The theme today is getting stateful toggling supported with a number of function
 - Remove the bedroom lights from fakesun(). Even at 0 brightness, these come on bright enough to be jarring.
 - Add .DS_Store to .gitignore (not sure why that wasn't already there).
 
+2022-03-10:
+
+- Add just _one_ of the bedroom downlights (33) to fakesun(). Having no bedroom lights involved is less effective than I'd like.
+
