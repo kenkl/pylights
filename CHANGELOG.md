@@ -165,3 +165,6 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Add just _one_ of the bedroom downlights (33) to fakesun(). Having no bedroom lights involved is less effective than I'd like.
 
+2022-03-21:
+
+- Further experimentation with the bedroom downlights in fakesun().
