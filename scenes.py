@@ -359,8 +359,7 @@ def fakesun():
     minutes = 7
     sleepInterval = (minutes * 60) / 254
     sleepInterval *= 0.77  # Allow for some overhead in the network processing of these calls
-    #units = [16, 30, 31, 32, 33, 22, 23, 24, 25]
-    units = [22, 23, 24, 25, 30, 32, 33]
+    units = [22, 23, 24, 25, 30]
 
     # Get everyone turned on, at minimal brighness to start...
     onwithbri(units, True, b=0)

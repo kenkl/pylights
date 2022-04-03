@@ -168,3 +168,7 @@ The theme today is getting stateful toggling supported with a number of function
 2022-03-21:
 
 - Further experimentation with the bedroom downlights in fakesun().
+
+2022-04-03:
+
+- Even more refinement of fakesun() behaviour. 
