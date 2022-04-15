@@ -235,6 +235,24 @@ def brread():
         onwithbri(unit,on,b=254)
         sethue(unit) # force warm white for colour
 
+def medtog():
+    '''Toggle the lights in the meditation corner'''
+    units = [9, 33]
+    if not checkstate(33): # use the downlight to see if we're in-progress
+        # not in progress, so save states and turn them on
+        for light in units:
+            savestate(light)
+        oneon(9)
+        onwithbri(33, True, b=254)
+        setct(33, ct=CTCOOL)  # should this be CTWARM? 
+    else:
+        # we're in-progress, so just restore states
+        for light in units:
+            restorestate(light)
+
+
+
+
 # Kitchen (K) scenes
 def kcstog():
     '''Kitchen Coffee Shop scene'''
