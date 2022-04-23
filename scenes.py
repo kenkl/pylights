@@ -256,7 +256,7 @@ def medtog():
 # Kitchen (K) scenes
 def kcstog():
     '''Kitchen Coffee Shop scene'''
-    units = [4, 6, 7, 8, 27, 34, 41]
+    units = [4, 6, 7, 8, 27, 34, 35, 41]
     if not checkstate(8): # keyed off the downlight at the far end; if it's in-progress, they all are
         # no statefile found. first, save states
         for light in units:
@@ -275,6 +275,7 @@ def kcstog():
         setlevel(7, 254)
         setlevel(8, 127)
         setlevel(34, 38)
+        onwithbri(35, True, 96) 
     else:
         # statefile found, let's restore the previous state
         for light in units:

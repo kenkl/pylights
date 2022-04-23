@@ -176,3 +176,7 @@ The theme today is getting stateful toggling supported with a number of function
 2022-04-15:
 
 - Add medtog() - a stateful toggle of lights in the meditation corner. TODO: in Lights, this is a 2-stage toggle cycling between CTWARM and CTCOOL. Should that be A Thing here, as well? For now, it's only CTCOOL.
+
+2022-04-23:
+
+- Add the coffee station worklight (35) to Kitchen Coffee Shop (kcstog). 
