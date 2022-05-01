@@ -226,6 +226,7 @@ def brsp2(force=False):
 def brread():
     '''Stateful toggle of the reading light'''
     unit = 5
+    state = False # tracking the toggle-state for reporting back to the caller - did we toggle on?
     if checkstate(unit): 
         # statefile exists, so let's roll it back...
         restorestate(unit)
@@ -234,6 +235,9 @@ def brread():
         savestate(unit)
         onwithbri(unit,on,b=254)
         sethue(unit) # force warm white for colour
+        state = True
+    returnstate = {"toggleon": state}
+    return returnstate
 
 def medtog():
     '''Toggle the lights in the meditation corner'''
