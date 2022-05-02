@@ -39,7 +39,11 @@ def honormal(ct=CTWARM):
     oneoff(37)
 
 def howltog():
-    toggle(37)
+    wl = 37
+    toggle(wl)
+    returnstate = {"toggleon": ison(wl)}
+    return returnstate
+
 
 def hohalf(bri=128):
     units = [3, 19, 21, 38]
@@ -174,8 +178,10 @@ def lrdfon():
 def lrread():
     ''' Stateful toggle, to full brightness, the lights for reading (a book) '''
     units = [13,14,15,23]
+    state = False
     if not checkstate(23): # keyed on the downlight
         #no statefile found, so we're not in-progress...
+        state = True
         for light in units:
             savestate(light)
         onwithbri(units,True,b=255)
@@ -184,6 +190,8 @@ def lrread():
     else: #key's in progress, so restore the state...
         for light in units:
             restorestate(light)
+    returnstate = {"toggleon": state}
+    return returnstate
             
 
 
@@ -241,6 +249,7 @@ def brread():
 
 def medtog():
     '''Toggle the lights in the meditation corner'''
+    state = False
     units = [9, 33]
     if not checkstate(33): # use the downlight to see if we're in-progress
         # not in progress, so save states and turn them on
@@ -249,10 +258,13 @@ def medtog():
         oneon(9)
         onwithbri(33, True, b=254)
         setct(33, ct=CTCOOL)  # should this be CTWARM? 
+        state = True
     else:
         # we're in-progress, so just restore states
         for light in units:
             restorestate(light)
+    returnstate = {"toggleon": state}
+    return returnstate
 
 
 
@@ -260,6 +272,7 @@ def medtog():
 # Kitchen (K) scenes
 def kcstog():
     '''Kitchen Coffee Shop scene'''
+    state = False
     units = [4, 6, 7, 8, 27, 34, 35, 41]
     if not checkstate(8): # keyed off the downlight at the far end; if it's in-progress, they all are
         # no statefile found. first, save states
@@ -280,10 +293,13 @@ def kcstog():
         setlevel(8, 127)
         setlevel(34, 38)
         onwithbri(35, True, 96) 
+        state = True
     else:
         # statefile found, let's restore the previous state
         for light in units:
             restorestate(light)
+    returnstate = {"toggleon": state}
+    return returnstate
        
 
 # Global (GL) scenes

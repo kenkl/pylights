@@ -186,3 +186,6 @@ The theme today is getting stateful toggling supported with a number of function
 - Construct an '/api2' app.route to return JSON states of calls instead of a browser-friendly return. I've been using [Apple Shortcuts](https://support.apple.com/guide/shortcuts/welcome/ios) to enable Siri to call into pylights to initiate an action, and had the idea that I could make Siri announce, in the shortcut, what the state of the call's return is. Problem is, '/api' doesn't return any useful data; just flipping the browser back to top.html. This is very much a WIP and may or may not develop further.
 - Update brread() to return a value (dict), indicating whether we've toggled on (or off) that light. That way, '/api2' has _something_ to pass on to Siri
 
+2022-05-02:
+
+- The '/api2' app.route addition has been an unqualified success. Yesterday's upgrade of brread() gave Siri (via Shortcuts) the intended awareness of toggle state for that light. So, I'm inspired to add the return state functionality to a few more scenes: howltog(), lrread(), medtog(), and kcstog().
