@@ -2,6 +2,7 @@
 
 from flask import Flask, request, render_template
 from scenes import *
+import datetime
 
 app = Flask(__name__)
 
@@ -14,6 +15,9 @@ def default_page():
 @app.route('/api')
 def api():
     call = request.args.get('call', type = str)
+    caller = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    logthis = caller + ': /api ' + call
+    logit(logthis)
     gotthis = eval(call)
     if not gotthis == None:
         if isinstance(gotthis, str) or isinstance(gotthis, dict):
@@ -33,6 +37,9 @@ def api():
 @app.route('/api2')
 def api2():
     call = request.args.get('call', type = str)
+    caller = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    logthis = caller + ': /api2 ' + call
+    logit(logthis)
     gotthis = eval(call)
     if not gotthis == None:
         if isinstance(gotthis, str) or isinstance(gotthis, dict):
@@ -44,6 +51,15 @@ def api2():
         
     else:
         return call
+
+def logit(call):
+    '''A simple little thing to dump recieved call requests to a log file for diagnostics, I guess'''
+    logfile = 'call_log.txt'
+    now = datetime.datetime.now()
+    timestamp = now.strftime('%Y-%m-%d@%H:%M')
+    logthis = timestamp + ' - ' + call + '\n'
+    with open(logfile, 'a') as file:
+        file.write(logthis)
 
 
 if __name__ == '__main__':

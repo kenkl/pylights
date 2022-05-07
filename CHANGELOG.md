@@ -189,3 +189,8 @@ The theme today is getting stateful toggling supported with a number of function
 2022-05-02:
 
 - The '/api2' app.route addition has been an unqualified success. Yesterday's upgrade of brread() gave Siri (via Shortcuts) the intended awareness of toggle state for that light. So, I'm inspired to add the return state functionality to a few more scenes: howltog(), lrread(), medtog(), and kcstog().
+
+2022-05-07:
+
+- Add hatog() wrapper for the accent group, providing a stateful toggle with return so that Siri/Shortcuts are simplified a bit.
+- Add logging to listener.py to capture calls to '/api' and '/api2' to a simple logfile for diagnostics/history. 

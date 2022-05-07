@@ -4,4 +4,5 @@ archive/
 .env/
 .vscode/
 secrets.py
+call_log.txt
 .DS_Store

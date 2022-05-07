@@ -316,6 +316,22 @@ def hueaccent(on=True):
     else:
         for light in units:
             oneoff(light)
+            clearstate(light)
+
+def hatog():
+    '''A toggle wrapper for the hueaccent() function with return for Siri/Shortcuts'''
+    state = False
+    units = [4, 26, 27, 34, 41]
+    if not checkstate(4): #keying on the mission accent light's in-progress state
+        for light in units:
+            savestate(light)
+        hueaccent(True)
+        state = True
+    else:
+        for light in units:
+            restorestate(light)
+    returnstate = {"toggleon": state}
+    return returnstate
 
 def dl(units, onstate=True, bri=254, ct=CTCOOL):
     '''Generic downlight(s) on/off, brightness, CT'''
