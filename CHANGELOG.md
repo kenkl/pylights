@@ -194,3 +194,7 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Add hatog() wrapper for the accent group, providing a stateful toggle with return so that Siri/Shortcuts are simplified a bit.
 - Add logging to listener.py to capture calls to '/api' and '/api2' to a simple logfile for diagnostics/history. 
+
+2022-06-21:
+
+- Yet another tweak to fakesun()

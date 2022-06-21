@@ -144,7 +144,7 @@ def lrsp2(force=False):
     if ison(12) or force: # keyed on the end-table lamp
         on([28,29]) # the two lower backlights should always be on here.
         setsp2(units)
-        setlevels([28, 29, 39], 16) # TV backlights should not be so bright
+        setlevels([28, 29], 16) # TV backlights should not be so bright
         off(39) # The play light strip is still a bit bright, so...
         off([17, 20]) # Candleboxes off
         lrdl(False)
@@ -414,7 +414,7 @@ def fakesun():
     minutes = 7
     sleepInterval = (minutes * 60) / 254
     sleepInterval *= 0.77  # Allow for some overhead in the network processing of these calls
-    units = [22, 23, 24, 25, 30]
+    units = [22, 23, 24, 25, 30, 33]
 
     # Get everyone turned on, at minimal brighness to start...
     onwithbri(units, True, b=0)
