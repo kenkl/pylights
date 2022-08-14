@@ -95,6 +95,14 @@ def lrtvbloff(): # If we're streaming to the TV backlights, this will be NOOP
     units = [28, 29, 39]
     off(units)
 
+def lrtvblon(): # an unconditional activation of the TV backlights. For reasons. 
+    units = [28, 29, 39]
+    on(units)
+    setlevel(28, b=8)
+    setlevel(29, b=8)
+    setlevel(39, b=30)
+    setcts(units, 430)
+
 def lrnormal(fulldl=False):
     lrtvbloff()
     units = [11, 12, 13, 14, 15, 17, 20]
@@ -300,8 +308,18 @@ def kcstog():
             restorestate(light)
     returnstate = {"toggleon": state}
     return returnstate
-       
 
+def knormal(): # An unconditional kitchen normal full lights on mode
+    hueaccent(on=True)
+    kdl()
+    clearallstates()
+
+def koff(): # Similarly, an unconditional "all off" for the kitchen
+    hueaccent(on=False)
+    kdl(False)
+    espresso()
+    clearallstates()
+       
 # Global (GL) scenes
 # allalloff() already exists in lightkit, FYI
 def hueaccent(on=True):
@@ -424,6 +442,26 @@ def fakesun():
     for level in range(0, 255):
         setlevels(units, level)
         sleep(sleepInterval)
+
+def nightlight(): # A simple, unconditional one-shot to put all the lights into an overnight/nightlight state
+    brsp2(force=True)
+    rnl(on=True)
+    lrcbon()
+    kdl(False)
+    hueaccent(on=True)
+    hosp2()
+    clearallstates()
+
+def nltog(): # key off the random nightlight (10) to "toggle" the nightlight state
+    state = False
+    rnl = 10
+    if ison(rnl):
+        allalloff()
+    else:
+        nightlight()
+        state = True
+    returnstate = {"toggleon": state}
+    return returnstate
 
 def xmastree(on=True):
     xmastreehost = 'http://speck.kenkl.org:5000/'

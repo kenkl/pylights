@@ -198,3 +198,10 @@ The theme today is getting stateful toggling supported with a number of function
 2022-06-21:
 
 - Yet another tweak to fakesun()
+
+2022-08-14:
+
+- Discovered, with some sadness, that the Hue Sync Box was interferring with the AirPlay functionality on the ATV4K in my AV stack, so I've taken it offline. I still want the TV backlights to do _something_, so I've added lrtvblon() to give it a nice unobtrusive level/colour-temperature for TV-watching sessions. Exact levels are subject to change, of course.
+- Add a new global utility call - a whole-house nightlight setting, collecting low-light-level calls from the rooms to create the scene - nightlight(). Also, adding nltog() to add a simple toggle (non-stateful) for the scene.
+- Add knormal() and koff() for a non-coffee-shop variant of the lights in the kitchen
+- Expose lrtvblon() and nltog() to the web interface via top.html.
