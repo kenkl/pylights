@@ -205,3 +205,10 @@ The theme today is getting stateful toggling supported with a number of function
 - Add a new global utility call - a whole-house nightlight setting, collecting low-light-level calls from the rooms to create the scene - nightlight(). Also, adding nltog() to add a simple toggle (non-stateful) for the scene.
 - Add knormal() and koff() for a non-coffee-shop variant of the lights in the kitchen
 - Expose lrtvblon() and nltog() to the web interface via top.html.
+
+2022-10-15:
+
+- I replaced the light on my front porch with the [Econic fixture](https://smile.amazon.com/gp/product/B07NDF3VPH), so it gets a few utility routines in scenes.py - fpset() and fplast()
+- Updated top.html to include (what I think will be) commonly-used calls to these
+- Although it does get caught in allalloff(), the porch light should (I think) go off when SP2 gets called, so add that.
+- As a goof/for fun, added rgbflash() - to cycle red, green, and blue on a single unit/light. I mostly added it to play with the new porch light for a minute, to "prove" that it's healthy. I can't promise not to expand/enhance it later, but for now it's just a simple little test rig.

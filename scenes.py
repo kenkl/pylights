@@ -147,6 +147,7 @@ def lrcinema():
         brmin()
 
 def lrsp2(force=False):
+    ''' SP2 - Sleep Protocol 2 - a visual reminder/encouragement to go to bed at a reasonable hour '''
     # 2021-11-30: revising the behaviour of SP2 after moving lights around the room 
     units = [11, 12, 13, 14, 15, 28, 29, 39] # this probably isn't needed now
     if ison(12) or force: # keyed on the end-table lamp
@@ -158,6 +159,7 @@ def lrsp2(force=False):
         lrdl(False)
         brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
+        fpset() # Turn off the front porch light, too.
 
 def lrcbon():
     '''An alternative to SP2 - candleboxes on, everything else off'''
@@ -472,6 +474,34 @@ def xmastree(on=True):
     else:
         r = requests.get(treeoff)
 
+def rgbflash(unit, loops=1):
+    ''' just for fun - cycle a single unit through red, green, and blue, saving/restoring state along the way '''
+    savestate(unit)
+    onwithbri(unit, state=True, b=255)
+    while loops > 0:
+        sethue(unit, h=HRED)
+        sleep(1)
+        sethue(unit, h=HGREEN)
+        sleep(1)
+        sethue(unit, HBLUE)
+        sleep(1)
+        loops -= 1
+    restorestate(unit)
+
+# Outside scenes (as of 2022-10-15, it's just the front porch light, but that could change/grow over time)
+
+def fpset(state=False, bri=255, ct=CTCOOL):
+    ''' A simple, direct control for the front porch light '''
+    unit = 42
+    onwithbri(unit, state, bri)
+    setct(unit, ct)
+
+def fplast(state=False):
+    ''' An even simpler control - on/off only, to retain the previous colour/brightness state '''
+    unit = 42
+    on(unit, state)
+
+    
 
 # Other (O) (test) scenes
 
