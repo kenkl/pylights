@@ -212,3 +212,4 @@ The theme today is getting stateful toggling supported with a number of function
 - Updated top.html to include (what I think will be) commonly-used calls to these
 - Although it does get caught in allalloff(), the porch light should (I think) go off when SP2 gets called, so add that.
 - As a goof/for fun, added rgbflash() - to cycle red, green, and blue on a single unit/light. I mostly added it to play with the new porch light for a minute, to "prove" that it's healthy. I can't promise not to expand/enhance it later, but for now it's just a simple little test rig.
+- _Another_ tweak to fakesun(). For reasons.
