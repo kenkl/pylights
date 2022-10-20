@@ -488,7 +488,7 @@ def rgbflash(unit, loops=1):
         loops -= 1
     restorestate(unit)
 
-# Outside scenes (as of 2022-10-15, it's just the front porch light, but that could change/grow over time)
+# Outside scenes
 
 def fpset(state=False, bri=255, ct=CTCOOL):
     ''' A simple, direct control for the front porch light '''
@@ -501,6 +501,16 @@ def fplast(state=False):
     unit = 42
     on(unit, state)
 
+def bpset(state=False, bri=255, ct=CTCOOL):
+    ''' A simple, direct control for the back porch light '''
+    unit = 43
+    onwithbri(unit, state, bri)
+    setct(unit, ct)
+
+def bplast(state=False):
+    ''' An even simpler control - on/off only, to retain the previous colour/brightness state '''
+    unit = 43
+    on(unit, state)
     
 
 # Other (O) (test) scenes

@@ -213,3 +213,9 @@ The theme today is getting stateful toggling supported with a number of function
 - Although it does get caught in allalloff(), the porch light should (I think) go off when SP2 gets called, so add that.
 - As a goof/for fun, added rgbflash() - to cycle red, green, and blue on a single unit/light. I mostly added it to play with the new porch light for a minute, to "prove" that it's healthy. I can't promise not to expand/enhance it later, but for now it's just a simple little test rig.
 - _Another_ tweak to fakesun(). For reasons.
+
+2022-10-20:
+
+- Add whitelist capability to checkall() - units that are expected to be unreachable at times (back porch), but _shouldn't_ send alerts. Reminder to future-me: the unit ids need to be STRs in that list.
+- Rework the front porch control in top.html. Also, added a back porch button.
+- Add a couple of functions for the new back porch light. Copy/paste is my friend.

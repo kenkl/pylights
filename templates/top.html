@@ -173,13 +173,32 @@
                Front porch
             </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
-                    <a class="dropdown-item" href="/api?call=fpset(True,ct=CTCOOL)">ON 100% COOL</a>
+                    <a class="dropdown-item" href="/api?call=fpset(True,ct=CTWARM)">ON Full (100%) Warm</a>
+                    <a class="dropdown-item" href="/api?call=fpset(True,ct=CTCOOL)">ON Full (100%) Cool</a>
                     <a class="dropdown-item" href="#">---------------------------</a>
-                    <a class="dropdown-item" href="/api?call=fpset(True,ct=CTWARM)">ON 100% WARM</a>
+                    <a class="dropdown-item" href="/api?call=fpset(True,bri=127,ct=CTWARM)">ON half (50%) Warm</a>
+                    <a class="dropdown-item" href="/api?call=fpset(True,bri=127,ct=CTCOOL)">ON half (50%) Cool</a>
                     <a class="dropdown-item" href="#">---------------------------</a>
                     <a class="dropdown-item" href="/api?call=fplast(True)">ON - last state</a>
                     <a class="dropdown-item" href="#">---------------------------</a>
                     <a class="dropdown-item" href="/api?call=fpset()">OFF</a>
+                </div>
+            </div>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop4" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Back porch
+            </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                    <a class="dropdown-item" href="/api?call=bpset(True,ct=CTWARM)">ON Full (100%) Warm</a>
+                    <a class="dropdown-item" href="/api?call=bpset(True,ct=CTCOOL)">ON Full (100%) Cool</a>
+                    <a class="dropdown-item" href="#">---------------------------</a>
+                    <a class="dropdown-item" href="/api?call=bpset(True,bri=127,ct=CTWARM)">ON half (50%) Warm</a>
+                    <a class="dropdown-item" href="/api?call=bpset(True,bri=127,ct=CTCOOL)">ON half (50%) Cool</a>
+                    <a class="dropdown-item" href="#">---------------------------</a>
+                    <a class="dropdown-item" href="/api?call=bplast(True)">ON - last state</a>
+                    <a class="dropdown-item" href="#">---------------------------</a>
+                    <a class="dropdown-item" href="/api?call=bpset()">OFF</a>
                 </div>
             </div>
 
