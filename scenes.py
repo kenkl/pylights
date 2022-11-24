@@ -155,11 +155,10 @@ def lrsp2(force=False):
         setsp2(units)
         setlevels([28, 29], 16) # TV backlights should not be so bright
         off(39) # The play light strip is still a bit bright, so...
-        off([17, 20]) # Candleboxes off
+        #off([17, 20]) # Candleboxes off
         lrdl(False)
         brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
-        fpset() # Turn off the front porch light, too.
 
 def lrcbon():
     '''An alternative to SP2 - candleboxes on, everything else off'''
@@ -483,7 +482,7 @@ def rgbflash(unit, loops=1):
         sleep(1)
         sethue(unit, h=HGREEN)
         sleep(1)
-        sethue(unit, HBLUE)
+        sethue(unit, h=HBLUE)
         sleep(1)
         loops -= 1
     restorestate(unit)

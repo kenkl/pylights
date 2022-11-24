@@ -219,3 +219,9 @@ The theme today is getting stateful toggling supported with a number of function
 - Add whitelist capability to checkall() - units that are expected to be unreachable at times (back porch), but _shouldn't_ send alerts. Reminder to future-me: the unit ids need to be STRs in that list.
 - Rework the front porch control in top.html. Also, added a back porch button.
 - Add a couple of functions for the new back porch light. Copy/paste is my friend.
+
+2022-11-24:
+
+- Remove the front porch light from lrsp2(). It only gets called if lrsp2() passes the key-check (or is forced), so I already have a "safety" call in the crontab "just in case" anyway. That seems more appropriate/sane anyway.
+- Speaking of lrsp2(). I've long been annoyed that it drops the candlebox lights, so let's stop doing that.
+- I'd intended the porchlights to be managed/controlled with local wall switches, but in practice that's not really A Thing™, so let's take them out of the whitelist for checkall(). It would actually be useful to have a reminder if either of them has been turned off manually for some reason.

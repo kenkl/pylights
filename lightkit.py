@@ -339,7 +339,8 @@ def notify(message):
 def checkall():
     '''Detect whether any units have gone unreachable, and send a list via notify() if they have'''
     send_alert = False  # Flag whether we found any
-    whitelist = ['42', '43'] # str's of units that should never send alerts
+    #whitelist = ['42', '43'] # str's of units that should never send alerts
+    whitelist = [] # str's of units that should never send alerts
     message = 'Units UNREACHABLE\n'
     lights = getlights()
     for i in lights.keys():
