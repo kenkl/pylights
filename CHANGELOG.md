@@ -225,3 +225,8 @@ The theme today is getting stateful toggling supported with a number of function
 - Remove the front porch light from lrsp2(). It only gets called if lrsp2() passes the key-check (or is forced), so I already have a "safety" call in the crontab "just in case" anyway. That seems more appropriate/sane anyway.
 - Speaking of lrsp2(). I've long been annoyed that it drops the candlebox lights, so let's stop doing that.
 - I'd intended the porchlights to be managed/controlled with local wall switches, but in practice that's not really A Thing™, so let's take them out of the whitelist for checkall(). It would actually be useful to have a reminder if either of them has been turned off manually for some reason.
+
+2023-01-08:
+
+- Removed the fairy-lights (41) management from espresso() - they're handled in hueaccent() anyway, plus my call in espresso() was bugged; not passing the proper state to it anyway, causing some... _confusing_ behaviour, especially with koff() - it would turn off the fairylights with hueaccent(False), but then they'd come right back on with espresso(). Oops. Very minor bug, but one that bothered me. 
+- Related: kcstog() has been toggling the coffee station work light (35), but the more I use that, the less "correct" it seems. Removed.
