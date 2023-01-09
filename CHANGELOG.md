@@ -230,3 +230,8 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Removed the fairy-lights (41) management from espresso() - they're handled in hueaccent() anyway, plus my call in espresso() was bugged; not passing the proper state to it anyway, causing some... _confusing_ behaviour, especially with koff() - it would turn off the fairylights with hueaccent(False), but then they'd come right back on with espresso(). Oops. Very minor bug, but one that bothered me. 
 - Related: kcstog() has been toggling the coffee station work light (35), but the more I use that, the less "correct" it seems. Removed.
+
+2023-01-09:
+
+- VSC/Pylance has informed me that using secrets.py is overriding stdlib functions in Python. Although I'm not using any of that (right now), I can envision having a frustrating moment at some point in the future if I needed to use something from the standard library. So... secrets.py has been renamed to pylsecrets.py and references in lightkit updated.
+- Move the whitelist for checkall() to pylsecrets.py. I'm planning to move a couple lights around, or even retire them from service, and it occurred to me that it would be good to not have to update the code (with associated commits on GitHub) for each one. Because the Hue Bridge returns the unit numbers as strings, whitelist needs to be a list of strings as well.

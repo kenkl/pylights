@@ -2,13 +2,14 @@
 # TODO: Replace the values below with ones appropriate for your environment
 
 secrets = {
-    'hueapikey': 'SuperSecretAPIKeyFromHueBridge', # The generated application key for the Hue Bridge we're using.
+    'hueapikey': 'SuperSecretAPIKeyFromHueBridge', # The generated application key for the Hue Bridge we're using. See https://developers.meethue.com/develop/get-started-2/ to get this key.
     'huehostname': 'hostname.example.com', # The host name (or IP) of the Bridge we're using.
-
 
     'myemail': 'myemailaddress@something.com', # email address to send FROM (also used for login)
     'email_password': 'SuperSecretEmailPassword', # password/token for named SMTP endpoint
     'email_host': 'smtp.something.com', # SMTP host to relay email through
     'email_port': 587, # port to connect sending SMTP traffic
     'email_dest': 'theiremailaddress@something.com', # email address to send TO
+
+    'whitelist': [''], # a list of strings of the units to skip in checkall()
 }

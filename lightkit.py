@@ -2,7 +2,7 @@
   
 import requests
 import json, time, os, smtplib
-from secrets import secrets
+from pylsecrets import secrets
 from time import sleep, strftime
 from datetime import datetime
 
@@ -10,6 +10,7 @@ from datetime import datetime
 requests.packages.urllib3.disable_warnings()
 
 # Useful globals
+whitelist=secrets['whitelist']
 hostname=secrets['huehostname']
 apikey=secrets['hueapikey']
 baseurl="https://"+hostname+"/api/"+apikey
@@ -339,8 +340,7 @@ def notify(message):
 def checkall():
     '''Detect whether any units have gone unreachable, and send a list via notify() if they have'''
     send_alert = False  # Flag whether we found any
-    #whitelist = ['42', '43'] # str's of units that should never send alerts
-    whitelist = [] # str's of units that should never send alerts
+    # from pylsecrets, whitelist is a list of str's that should never send alerts, e.g. whitelist = ['42', '43']
     message = 'Units UNREACHABLE\n'
     lights = getlights()
     for i in lights.keys():

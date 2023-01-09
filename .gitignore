@@ -3,6 +3,6 @@ __pycache__/
 archive/
 .env/
 .vscode/
-secrets.py
+pylsecrets.py
 call_log.txt
 .DS_Store
