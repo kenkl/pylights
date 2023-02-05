@@ -235,3 +235,9 @@ The theme today is getting stateful toggling supported with a number of function
 
 - VSC/Pylance has informed me that using secrets.py is overriding stdlib functions in Python. Although I'm not using any of that (right now), I can envision having a frustrating moment at some point in the future if I needed to use something from the standard library. So... secrets.py has been renamed to pylsecrets.py and references in lightkit updated.
 - Move the whitelist for checkall() to pylsecrets.py. I'm planning to move a couple lights around, or even retire them from service, and it occurred to me that it would be good to not have to update the code (with associated commits on GitHub) for each one. Because the Hue Bridge returns the unit numbers as strings, whitelist needs to be a list of strings as well.
+
+2023-02-05:
+
+- Change the whitelist used by checkall() to be INTs. It was an amateur-hour move to force them to be strings just 'cos the Bridge returns them that way. 
+- Add an aaoexclude list to pylsecrets to be used by allalloff(). Units listed here (as INTs) will be skipped during that call. This lets me schedule a unit (Nixie-tube clock) separately from the global lights-out behaviour.
+- Add an optional argument to allalloff() to override the exclusion list as needed. 

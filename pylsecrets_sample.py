@@ -11,5 +11,6 @@ secrets = {
     'email_port': 587, # port to connect sending SMTP traffic
     'email_dest': 'theiremailaddress@something.com', # email address to send TO
 
-    'whitelist': [''], # a list of strings of the units to skip in checkall()
+    'whitelist': [], # a list of units to skip in checkall() - as of 2023-02-05, these can/should be INTs
+    'aaoexclude': [] # a list of units to exclude from allalloff() for reasons.
 }

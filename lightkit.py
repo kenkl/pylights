@@ -11,6 +11,7 @@ requests.packages.urllib3.disable_warnings()
 
 # Useful globals
 whitelist=secrets['whitelist']
+aaoexclude=secrets['aaoexclude']
 hostname=secrets['huehostname']
 apikey=secrets['hueapikey']
 baseurl="https://"+hostname+"/api/"+apikey
@@ -251,11 +252,18 @@ def lightlist():
             rs = "*** UNREACHABLE ***"
         print(f"{rs}{i} {name}  {onoff}")
 
-def allalloff():
-    '''Turns off ALL the lights known to the Bridge'''
+def allalloff(force=False):
+    '''Turns off all the lights known to the Bridge, except those listed in aaoexclude'''
+    print(f"force set to {force}")
     lights=getlights()
     for i in lights.keys():
-        oneoff(i)
+        off = False
+        if int(i) not in aaoexclude:
+            off = True
+        elif force:
+            off = True
+        if off:
+            oneoff(i)
     clearallstates()
 
 def sethue(i, h=7676, s=143):
@@ -348,7 +356,7 @@ def checkall():
         state = unitid['state']
         name = unitid['name']
         reachable = state['reachable']
-        if not reachable and i not in whitelist:
+        if not reachable and int(i) not in whitelist:
             message += f"{i} - {name}\n"
             send_alert = True
     if send_alert:
