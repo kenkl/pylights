@@ -15,6 +15,8 @@ aaoexclude=secrets['aaoexclude']
 hostname=secrets['huehostname']
 apikey=secrets['hueapikey']
 baseurl="https://"+hostname+"/api/"+apikey
+picow2="http://picow2.kenkl.org:8080"
+picow3="http://picow3.kenkl.org:8080"
 STATEFILEPATH = '/tmp' # Where to store statefiles 
 CTWARM = 400
 CTCOOL = 330
@@ -264,6 +266,8 @@ def allalloff(force=False):
             off = True
         if off:
             oneoff(i)
+    r=requests.get(picow2+"/led?on=false")
+    r=requests.get(picow3+"/led?on=false")
     clearallstates()
 
 def sethue(i, h=7676, s=143):

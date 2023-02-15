@@ -9,12 +9,16 @@ def hoalloff():
     units = [3, 19, 18, 21, 37, 38]
     for light in units:
         oneoff(light)
+    r=requests.get(picow2+"/led?on=false")
+    r=requests.get(picow3+"/led?on=false")
 
 def hofull(ct=CTWARM):
     units = [3, 19, 18, 21, 37, 38]
     on(units)
     setcts(units, ct)
     setlevels(units, bri=254)
+    r=requests.get(picow2+"/led?on=true&bri=1.0")
+    r=requests.get(picow3+"/led?on=true&bri=1.0")
 
 def honormal(ct=CTWARM):
     # Monitor backlights
@@ -37,6 +41,14 @@ def honormal(ct=CTWARM):
     setlevel(fl)
     # Worklight
     oneoff(37)
+    # NeoPixel strands
+    if ct == CTWARM:
+        r=requests.get(picow2+"/led?on=colour&bri=0.5") # for now, the colourful strand accompanies the CTWARM vibe, while...
+        r=requests.get(picow3+"/led?on=colour&bri=0.5")
+    else:
+        r=requests.get(picow2+"/led?on=true&bri=0.5") # CTCOOL is usually my WFH mode, so let's lose the multi-colour fun-time. Get back to work! LOL
+        r=requests.get(picow3+"/led?on=true&bri=0.5")
+
 
 def howltog():
     wl = 37
@@ -52,6 +64,8 @@ def hohalf(bri=128):
         setct(light, CTWARM)
         setlevel(light, bri)
     oneoff(37) # worklight
+    r=requests.get(picow2+"/led?on=false")
+    r=requests.get(picow3+"/led?on=false")
 
 def hoh1():
     hohalf()
@@ -69,14 +83,20 @@ def hogame():
     for light in units:
         oneon(light)
         sethue(light, 5262, 201)
+    r=requests.get(picow2+"/led?on=false")
+    r=requests.get(picow3+"/led?on=false")
 
 def homin47():
     oneoff(18)
     hohalf(47)
+    r=requests.get(picow2+"/led?on=orange&bri=0.05")
+    r=requests.get(picow3+"/led?on=orange&bri=0.05")
 
 def homin1():
     oneoff(18)
     hohalf(1)
+    r=requests.get(picow2+"/led?on=false")
+    r=requests.get(picow3+"/led?on=false")
 
 def hosp2(force=False):
     units = [3, 19, 21, 38]
@@ -84,6 +104,8 @@ def hosp2(force=False):
         on(units) # Assuming that the key is off, but we got here by force
         off([18, 37])
         setsp2(units)
+    r=requests.get(picow2+"/led?on=false")
+    r=requests.get(picow3+"/led?on=false")
 
 # Living Room (LR) scenes
 def lroff():

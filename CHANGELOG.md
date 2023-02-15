@@ -241,3 +241,7 @@ The theme today is getting stateful toggling supported with a number of function
 - Change the whitelist used by checkall() to be INTs. It was an amateur-hour move to force them to be strings just 'cos the Bridge returns them that way. 
 - Add an aaoexclude list to pylsecrets to be used by allalloff(). Units listed here (as INTs) will be skipped during that call. This lets me schedule a unit (Nixie-tube clock) separately from the global lights-out behaviour.
 - Add an optional argument to allalloff() to override the exclusion list as needed. 
+
+2023-02-15:
+
+- I've started using [Adafruit NeoPixel 50-pixel strands](https://www.adafruit.com/product/4560) with [Raspberry Pi PICO W](https://www.adafruit.com/product/5526)s to add even _more_ fairy-lights to my space. It didn't take long before I felt the desire to fold them into scenes in rooms that they're decorating. I've added picow2 and picow3 in my home-office/studio as a start. More are planned to follow. TODO: post a version of the CircuitPython I'm using on the PICOWs to respond to these calls. 
