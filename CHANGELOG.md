@@ -245,3 +245,8 @@ The theme today is getting stateful toggling supported with a number of function
 2023-02-15:
 
 - I've started using [Adafruit NeoPixel 50-pixel strands](https://www.adafruit.com/product/4560) with [Raspberry Pi PICO W](https://www.adafruit.com/product/5526)s to add even _more_ fairy-lights to my space. It didn't take long before I felt the desire to fold them into scenes in rooms that they're decorating. I've added picow2 and picow3 in my home-office/studio as a start. More are planned to follow. TODO: post a version of the CircuitPython I'm using on the PICOWs to respond to these calls. 
+
+2023-02-16:
+
+- Cleaning up the calls in HO for the NeoPixel strands - wrapping them in hofl() instead. It's not a performance boost or anything, but the code looks nicer.
+- Add a few utility links in top.html for the listener to provide control.
