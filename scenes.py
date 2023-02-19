@@ -302,7 +302,7 @@ def medtog():
 
 def brfl(callstring, bri=0.5):
     '''call the PICOW-based fairy-lights in HO - no returns'''
-    picows = [picow4]
+    picows = [picow4, picow5]
     for picow in picows:
         r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
 

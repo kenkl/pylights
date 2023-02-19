@@ -254,4 +254,4 @@ The theme today is getting stateful toggling supported with a number of function
 2023-02-19:
 
 - The NeoPixel strands are a neat addition to my space, so I've put a strand up in the corner of the bedroom in my meditiation spot, and added the necessary bits to control it in lightkit.py and scenes.py
-
+- (later) Add a second strand in the bedroom
