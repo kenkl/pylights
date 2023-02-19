@@ -227,6 +227,7 @@ def broff():
     units = [5, 9, 16, 36]
     off(units)
     brdl(onstate=False)
+    brfl("false")
 
 def brfull():
     units = [5, 9, 16, 36]
@@ -234,6 +235,7 @@ def brfull():
     setlevels(units)
     sethues(units)
     brdl(onstate=True, bri=254, ct=CTWARM)
+    brfl("true", 1)
 
 def brhalf():
     units = [5, 9, 16, 36]
@@ -241,6 +243,7 @@ def brhalf():
     setlevels(units, bri=127)
     sethues(units)
     brdl(onstate=True, bri=127, ct=CTWARM)
+    brfl("colour")
 
 def brmin():
     units = [5, 9, 16]
@@ -249,6 +252,7 @@ def brmin():
     sethue(36, s=199)
     setlevel(36,38)
     brdl(onstate=True, bri=1, ct=CTWARM)
+    brfl("colour",0.02)
 
 def brsp2(force=False):
     units = [5, 9, 36]
@@ -257,6 +261,7 @@ def brsp2(force=False):
         off(units)
         setsp2(16, 16)
         brdl(False)
+        brfl("red",0.01)
 
 def brread():
     '''Stateful toggle of the reading light'''
@@ -284,17 +289,22 @@ def medtog():
             savestate(light)
         oneon(9)
         onwithbri(33, True, b=254)
-        setct(33, ct=CTCOOL)  # should this be CTWARM? 
+        setct(33, ct=CTWARM)  # should this be CTWARM? 
+        brfl("warm")
         state = True
     else:
         # we're in-progress, so just restore states
         for light in units:
             restorestate(light)
+        brfl("false")
     returnstate = {"toggleon": state}
     return returnstate
 
-
-
+def brfl(callstring, bri=0.5):
+    '''call the PICOW-based fairy-lights in HO - no returns'''
+    picows = [picow4]
+    for picow in picows:
+        r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
 
 # Kitchen (K) scenes
 def kcstog():

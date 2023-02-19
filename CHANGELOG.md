@@ -250,3 +250,8 @@ The theme today is getting stateful toggling supported with a number of function
 
 - Cleaning up the calls in HO for the NeoPixel strands - wrapping them in hofl() instead. It's not a performance boost or anything, but the code looks nicer.
 - Add a few utility links in top.html for the listener to provide control.
+
+2023-02-19:
+
+- The NeoPixel strands are a neat addition to my space, so I've put a strand up in the corner of the bedroom in my meditiation spot, and added the necessary bits to control it in lightkit.py and scenes.py
+
