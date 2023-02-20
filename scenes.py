@@ -95,19 +95,23 @@ def hosp2(force=False):
         on(units) # Assuming that the key is off, but we got here by force
         off([18, 37])
         setsp2(units)
-    hofl("false")
+        hofl("red",0.03)
 
 def hofl(callstring, bri=0.5):
     '''call the PICOW-based fairy-lights in HO - no returns'''
     picows = [picow2, picow3]
     for picow in picows:
-        r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
+        try:
+            r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
+        except Exception as e:
+            print(f"Failed talking to {picow} - {e}")
 
 # Living Room (LR) scenes
 def lroff():
     units = [11, 12, 13, 14, 15, 17, 20, 28, 29, 39]
     off(units)
     lrdl(onstate=False)
+    lrfl("false")
 
 def lrtvbloff(): # If we're streaming to the TV backlights, this will be NOOP
     units = [28, 29, 39]
@@ -133,14 +137,19 @@ def lrnormal(fulldl=False):
     if not keylight['on']:
         if fulldl:
             lrdl(onstate=True, bri=254, ct=CTWARM)
+            lrfl('colour',bri=1)
         else:
             lrdl(onstate=True, bri=127, ct=CTWARM)
+            lrfl('colour')
     elif keylight['bri'] == 254:
         lrdl(onstate=True, bri=127, ct=CTWARM)
+        lrfl('colour')
     elif keylight['bri'] == 127:
         lrdl(onstate=True, bri=254, ct=CTWARM)
+        lrfl('colour',bri=1)
     else: # The key is on, but at an uncaught bri level.
         lrdl(onstate=True, bri=127, ct=CTWARM)
+        lrfl('colour')
 
 def lrteevee():
     lrtvbloff()
@@ -152,6 +161,7 @@ def lrteevee():
     lrdl(onstate=True, bri=1, ct=CTWARM)
     if ison(9): # If the bedroom is on, bring it down
         brmin()
+    lrfl('colour',bri=0.02)
 
 def lrcinema():
     lrtvbloff()
@@ -163,6 +173,7 @@ def lrcinema():
     lrdl(onstate=False)
     if ison(9): # If the bedroom is on, bring it down
         brmin()
+    lrfl('colour',bri=0.01)
 
 def lrsp2(force=False):
     ''' SP2 - Sleep Protocol 2 - a visual reminder/encouragement to go to bed at a reasonable hour '''
@@ -177,6 +188,7 @@ def lrsp2(force=False):
         lrdl(False)
         brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
+        lrfl("red",0.03)
 
 def lrcbon():
     '''An alternative to SP2 - candleboxes on, everything else off'''
@@ -184,6 +196,7 @@ def lrcbon():
     off(units)
     lrdl(onstate=False)
     on([17,20])
+    lrfl('orange',bri=0.03)
 
 def lrteevee2():
     ''' Alternate TV mode with everything dimmed, but downlights still active '''
@@ -193,6 +206,7 @@ def lrteevee2():
     lrdl(True, bri=1, ct=CTWARM) # bring the downlights up to a minimal state
     onwithbri([11,12],True,b=55) # table lamps on dimly
     sethues([11,12], hue=8402, sat=143)
+    lrfl('colour',bri=0.01)
 
 def lrdfoff():
     ''' just turn off the three lights in the tall dragonfly lamp. for reasons. '''
@@ -220,6 +234,14 @@ def lrread():
     returnstate = {"toggleon": state}
     return returnstate
             
+def lrfl(callstring, bri=0.5):
+    '''call the PICOW-based fairy-lights in LR - no returns'''
+    picows = [picow6, picow7]
+    for picow in picows:
+        try:
+            r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
+        except Exception as e:
+            print(f"Failed talking to {picow} - {e}")
 
 
 # Bedroom (BR) scenes
@@ -261,7 +283,7 @@ def brsp2(force=False):
         off(units)
         setsp2(16, 16)
         brdl(False)
-        brfl("red",0.01)
+        brfl("red",0.03)
 
 def brread():
     '''Stateful toggle of the reading light'''
@@ -301,10 +323,13 @@ def medtog():
     return returnstate
 
 def brfl(callstring, bri=0.5):
-    '''call the PICOW-based fairy-lights in HO - no returns'''
+    '''call the PICOW-based fairy-lights in BR - no returns'''
     picows = [picow4, picow5]
     for picow in picows:
-        r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
+        try:
+            r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
+        except Exception as e:
+            print(f"Failed talking to {picow} - {e}")
 
 # Kitchen (K) scenes
 def kcstog():
@@ -451,6 +476,9 @@ def goodmorning():
     onwithbri(35, True, 96) # Coffee station worklight
     on(41) # Kitchen fairy lights (coffee station)
     alldl()
+    lrfl('colour',bri=1)
+    brfl('colour',bri=1)
+    homin47()
     clearallstates()
     
 def fakesun():

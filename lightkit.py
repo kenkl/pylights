@@ -19,7 +19,9 @@ picow2="http://picow2.kenkl.org:8080"
 picow3="http://picow3.kenkl.org:8080"
 picow4="http://picow4.kenkl.org:8080"
 picow5="http://picow5.kenkl.org:8080"
-allpicows=[picow2, picow3, picow4, picow5]
+picow6="http://picow6.kenkl.org:8080"
+picow7="http://picow7.kenkl.org:8080"
+allpicows=[picow2, picow3, picow4, picow5, picow6, picow7]
 STATEFILEPATH = '/tmp' # Where to store statefiles 
 CTWARM = 400
 CTCOOL = 330
@@ -270,7 +272,11 @@ def allalloff(force=False):
         if off:
             oneoff(i)
     for picow in allpicows:
-        r = requests.get(picow+"/led?on=false")
+        try:
+            r = requests.get(picow+"/led?on=false")
+        except Exception as e:
+            print(f"Failed talking to {picow} - {e}")
+            
     clearallstates()
 
 def sethue(i, h=7676, s=143):

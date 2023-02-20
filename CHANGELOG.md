@@ -255,3 +255,10 @@ The theme today is getting stateful toggling supported with a number of function
 
 - The NeoPixel strands are a neat addition to my space, so I've put a strand up in the corner of the bedroom in my meditiation spot, and added the necessary bits to control it in lightkit.py and scenes.py
 - (later) Add a second strand in the bedroom
+
+2023-02-20:
+
+- Added a couple strands to the living room (I really like the vibe these add), and updated scenes and lightkit accordingly.
+- Wrapped the calls to the PICOWs in try/except blocks, y'know, just in case.
+- Other assorted scene refinements
+- Add some direct-control links for the fairy-lights in top.html for the listener.
