@@ -262,3 +262,7 @@ The theme today is getting stateful toggling supported with a number of function
 - Wrapped the calls to the PICOWs in try/except blocks, y'know, just in case.
 - Other assorted scene refinements
 - Add some direct-control links for the fairy-lights in top.html for the listener.
+
+2023-03-04:
+
+- Added another NeoPixel strand to my home-office/studio.

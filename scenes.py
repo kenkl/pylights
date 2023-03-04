@@ -99,7 +99,7 @@ def hosp2(force=False):
 
 def hofl(callstring, bri=0.5):
     '''call the PICOW-based fairy-lights in HO - no returns'''
-    picows = [picow2, picow3]
+    picows = [picow2, picow3, picow8]
     for picow in picows:
         try:
             r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
