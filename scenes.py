@@ -236,7 +236,7 @@ def lrread():
             
 def lrfl(callstring, bri=0.5):
     '''call the PICOW-based fairy-lights in LR - no returns'''
-    picows = [picow6, picow7]
+    picows = [picow6, picow7, picow9]
     for picow in picows:
         try:
             r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")
@@ -324,7 +324,7 @@ def medtog():
 
 def brfl(callstring, bri=0.5):
     '''call the PICOW-based fairy-lights in BR - no returns'''
-    picows = [picow4, picow5]
+    picows = [picow4, picow5, picow10]
     for picow in picows:
         try:
             r = requests.get(f"{picow}/led?on={callstring}&bri={bri}")

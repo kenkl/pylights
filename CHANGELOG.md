@@ -266,3 +266,7 @@ The theme today is getting stateful toggling supported with a number of function
 2023-03-04:
 
 - Added another NeoPixel strand to my home-office/studio.
+
+2023-03-11:
+
+- Add NeoPixel strands to the living room and bedroom (picow9 & picow10)
