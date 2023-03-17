@@ -6,3 +6,4 @@ archive/
 pylsecrets.py
 call_log.txt
 .DS_Store
+test.py

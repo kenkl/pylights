@@ -312,13 +312,11 @@ def medtog():
         oneon(9)
         onwithbri(33, True, b=254)
         setct(33, ct=CTWARM)  # should this be CTWARM? 
-        brfl("warm")
         state = True
     else:
         # we're in-progress, so just restore states
         for light in units:
             restorestate(light)
-        brfl("false")
     returnstate = {"toggleon": state}
     return returnstate
 
@@ -497,6 +495,18 @@ def fakesun():
     for level in range(0, 255):
         setlevels(units, level)
         sleep(sleepInterval)
+
+def fakesunfl():
+    '''Using fairy-lights as the fake-sun light source'''
+    minutes = 7
+    sleepInterval = (minutes * 60) / 100
+    sleepInterval *= 0.77 # do we need this with the PICOWs?
+    # then, step (slowly) through them all to bring them up
+    for level in range(0, 100):
+        bl = level / 100
+        brfl('orange',bl)
+        sleep(sleepInterval)
+    brfl('mywhite',1) # the 'sun' is done rising; let's flip colour temperature to something less warm
 
 def nightlight(): # A simple, unconditional one-shot to put all the lights into an overnight/nightlight state
     brsp2(force=True)

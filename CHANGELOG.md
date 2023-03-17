@@ -270,3 +270,8 @@ The theme today is getting stateful toggling supported with a number of function
 2023-03-11:
 
 - Add NeoPixel strands to the living room and bedroom (picow9 & picow10)
+
+2023-03-17:
+
+- With all the fairy-lights strung up now (esp. the bedroom ones), it occurred to me that they could be used to play the 'fake sunrise' role (the Hue lights come on a little bright even at their minimum), so fakesunfl() is now added to scenes. 
+- Removed brfl() calls from the medtog() function. They were, I found, a bit more distracting than I'd like.
