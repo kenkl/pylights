@@ -373,6 +373,14 @@ def koff(): # Similarly, an unconditional "all off" for the kitchen
        
 # Global (GL) scenes
 # allalloff() already exists in lightkit, FYI
+
+def servicemode(): # Time to water the houseplants
+    hofull(CTCOOL)
+    hueaccent(on=True)
+    alldl()
+    brfl('true')
+    lrfl('true')
+
 def hueaccent(on=True):
     '''Turn on/off the accent lights in the LR and Kitchen'''
     units = [4, 26, 27, 34, 41]

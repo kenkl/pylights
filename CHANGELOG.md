@@ -275,3 +275,7 @@ The theme today is getting stateful toggling supported with a number of function
 
 - With all the fairy-lights strung up now (esp. the bedroom ones), it occurred to me that they could be used to play the 'fake sunrise' role (the Hue lights come on a little bright even at their minimum), so fakesunfl() is now added to scenes. 
 - Removed brfl() calls from the medtog() function. They were, I found, a bit more distracting than I'd like.
+
+2023-08-19:
+
+- My weekly routine of watering the houseplants on Saturday morning involves turning all the downlights on full cool, with the fairy-lights on as well. I can tap-tap-tap to bring them up, but I wanted to streamline the action, so I've added servicemode() to scenes.py and updated top.html to add it to the web-interface (TODO: clean up the layout/controls listed there).
