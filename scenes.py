@@ -461,29 +461,24 @@ def espresso(state=False):
 def goodmorning():
     '''Turn on ALL the lights in the house'''
     # "Good morning, houseplants. Yes, it's wake-up time."
-    # The PHP version in Lights works really well. Let's ape that, with order and everything. First, all the table lamps and such, and THEN the downlights.
     
     # Living room:
-    units = [11,12,13,14,15]
-    on(units)
-    sethues(units)
-    setlevels(units)
-    on([17,20]) # The candlebox lamps
+    lrnormal()
 
     #Bedroom
-    units = [5,16,36]
-    on(units)
-    sethues(units)
-    setlevels(units, 127)
-    on(9)
+    # Basically, a copy of brmin() without the downlights (to avoid the jarring flash when they come up)
+    units = [5, 9, 16]
+    off(units)
+    on(36)
+    sethue(36, s=199)
+    setlevel(36,38)
+    brfl("colour",0.02)
     
-    # Everything else, including downlights and dangling statefiles
+    # Everything else, including kitchen downlights and dangling statefiles
     hueaccent(True)
     onwithbri(35, True, 96) # Coffee station worklight
     on(41) # Kitchen fairy lights (coffee station)
-    alldl()
-    lrfl('colour',bri=1)
-    brfl('colour',bri=1)
+    kdl() 
     homin47()
     clearallstates()
     

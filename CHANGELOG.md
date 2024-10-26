@@ -279,3 +279,8 @@ The theme today is getting stateful toggling supported with a number of function
 2023-08-19:
 
 - My weekly routine of watering the houseplants on Saturday morning involves turning all the downlights on full cool, with the fairy-lights on as well. I can tap-tap-tap to bring them up, but I wanted to streamline the action, so I've added servicemode() to scenes.py and updated top.html to add it to the web-interface (TODO: clean up the layout/controls listed there).
+
+2024-10-26:
+
+- The goodmorning() macro in scenes.py has been bugging me for a little while; the full-brightness at waking is frequently (but not _always_ TBH) jarring, so I've (finally) adjusted its behaviour a little.
+
