@@ -284,3 +284,6 @@ The theme today is getting stateful toggling supported with a number of function
 
 - The goodmorning() macro in scenes.py has been bugging me for a little while; the full-brightness at waking is frequently (but not _always_ TBH) jarring, so I've (finally) adjusted its behaviour a little.
 
+2025-03-22:
+
+- No changes this time, actually. I've upgraded to a shiny new Mac Studio and am getting my toolchain in order to continue working on stuff to push to GitHub.
