@@ -279,7 +279,7 @@ def brmin():
 
 def brsp2(force=False):
     units = [5, 9, 36]
-    if ison(5):
+    if ison(5) and not force:
         # 2025-04-12 - actually, if the reading light is on, don't bug me - I'M READING A BOOK!
         return 1
     if ison(16) or ison(36) or force: # keyed on the bedside table light
