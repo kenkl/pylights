@@ -288,3 +288,10 @@ The theme today is getting stateful toggling supported with a number of function
 
 - No changes this time, actually. I've upgraded to a shiny new Mac Studio and am getting my toolchain in order to continue working on stuff to push to GitHub.
 - 🥰
+
+2025-04-12:
+
+In recent weeks, I've taken to reading a book in my spot in the bedroom before going to bed. The behaviour of the schedule has been a little disruptive, so I've made a couple changes:
+- decouple brsp2() from lrsp2(). brsp2() has its own entry in the crontab anyway, and it seems unimportant.
+- skip brsp2() if the reading light is on (I'm actively reading a book!)
+

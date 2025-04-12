@@ -186,7 +186,8 @@ def lrsp2(force=False):
         off(39) # The play light strip is still a bit bright, so...
         #off([17, 20]) # Candleboxes off
         lrdl(False)
-        brsp2()
+        # 2025-04-12: decouple brsp2() here.
+        #brsp2()
         hosp2() # If I'm playing vidja games in my studio, trigger this one too.
         lrfl("red",0.03)
 
@@ -278,12 +279,16 @@ def brmin():
 
 def brsp2(force=False):
     units = [5, 9, 36]
+    if ison(5):
+        # 2025-04-12 - actually, if the reading light is on, don't bug me - I'M READING A BOOK!
+        return 1
     if ison(16) or ison(36) or force: # keyed on the bedside table light
         on(16) # the key is off, but we got here by force
         off(units)
         setsp2(16, 16)
         brdl(False)
         brfl("red",0.03)
+        return 0
 
 def brread():
     '''Stateful toggle of the reading light'''
