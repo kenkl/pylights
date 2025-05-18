@@ -295,3 +295,8 @@ In recent weeks, I've taken to reading a book in my spot in the bedroom before g
 - decouple brsp2() from lrsp2(). brsp2() has its own entry in the crontab anyway, and it seems unimportant.
 - skip brsp2() if the reading light is on (I'm actively reading a book!)
 
+2025-05-18:
+
+Little refinements (after all these years) to top.html:
+- add overrides for text/background colours - the defaults (black text on a white background) are a little too... bright in a dark room. 
+- add an individual control for the kitchen fairy lights. finally.

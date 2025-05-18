@@ -18,6 +18,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
+    <!-- Let's make this less retina-searing in the dark  -->
+     <style>
+        body {
+            color: #fff !important;
+            background-color: #000 !important;
+        }
+     </style>
+
     <title>Lights!!!</title>
 </head>
 
@@ -209,6 +217,16 @@
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
                     <a class="dropdown-item" href="/api?call=hueaccent(on=True)">ON</a>
                     <a class="dropdown-item" href="/api?call=hueaccent(on=False)">OFF</a>
+                </div>
+            </div>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop4" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Kitchen Fairy Lights
+            </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                    <a class="dropdown-item" href="/api?call=oneon(41)">ON</a>
+                    <a class="dropdown-item" href="/api?call=oneoff(41)">OFF</a>
                 </div>
             </div>
 
