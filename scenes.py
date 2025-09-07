@@ -365,9 +365,9 @@ def kcstog():
     returnstate = {"toggleon": state}
     return returnstate
 
-def knormal(): # An unconditional kitchen normal full lights on mode
+def knormal(ct=CTCOOL): # An unconditional kitchen normal full lights on mode
     hueaccent(on=True)
-    kdl()
+    kdl(ct=ct)
     clearallstates()
 
 def koff(): # Similarly, an unconditional "all off" for the kitchen

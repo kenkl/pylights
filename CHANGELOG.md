@@ -300,3 +300,9 @@ In recent weeks, I've taken to reading a book in my spot in the bedroom before g
 Little refinements (after all these years) to top.html:
 - add overrides for text/background colours - the defaults (black text on a white background) are a little too... bright in a dark room. 
 - add an individual control for the kitchen fairy lights. finally.
+
+2025-09-07:
+
+More little refinements to top.html:
+- add a few kitchen scenes.
+- tweak knormal() to pass ct for the kdl() calls that top.html ultimately triggers.
